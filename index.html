@@ -10,6 +10,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Kalpurush&family=Noto+Sans+Bengali:wght@400;600;700&display=swap');
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', 'Noto Sans Bengali', 'Kalpurush', sans-serif;
             background-color: #0d1117;
@@ -26,7 +30,7 @@
             border: 1px solid rgba(48, 54, 61, 0.7);
         }
 
-        .sidebar-link.active {
+        .sidebar-link:hover, .sidebar-link.active {
             background-color: #1f6feb22;
             color: #58a6ff;
             border-left: 3px solid #58a6ff;
@@ -79,7 +83,7 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🗺️ Hierarchy Roadmap</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#roadmap" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">1. Complete Learning Path</a>
+                    <a href="#roadmap" class="sidebar-link block px-3 py-2 rounded-md transition">1. Complete Learning Path</a>
                 </div>
             </div>
 
@@ -87,16 +91,16 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🟢 Core Lessons (1 - 10)</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#lesson01" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">01. Hello World & Structure</a>
-                    <a href="#lesson02" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">02. Variables & Data Types</a>
-                    <a href="#lesson03" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">03. Control Flow (if/switch/for)</a>
-                    <a href="#lesson04" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">04. Functions & Error Handling</a>
-                    <a href="#lesson05" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">05. Data Structures (Slices/Maps)</a>
-                    <a href="#lesson06" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">06. Pointers & Memory</a>
-                    <a href="#lesson07" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">07. Methods & Interfaces</a>
-                    <a href="#lesson08" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">08. Concurrency & Channels</a>
-                    <a href="#lesson09" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">09. Modules & Stdlib</a>
-                    <a href="#lesson10" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">10. Unit Testing & Benchmarks</a>
+                    <a href="#lesson01" class="sidebar-link block px-3 py-2 rounded-md transition">01. Hello World & Structure</a>
+                    <a href="#lesson02" class="sidebar-link block px-3 py-2 rounded-md transition">02. Variables & Data Types</a>
+                    <a href="#lesson03" class="sidebar-link block px-3 py-2 rounded-md transition">03. Control Flow (if/switch/for)</a>
+                    <a href="#lesson04" class="sidebar-link block px-3 py-2 rounded-md transition">04. Functions & Error Handling</a>
+                    <a href="#lesson05" class="sidebar-link block px-3 py-2 rounded-md transition">05. Data Structures (Slices/Maps)</a>
+                    <a href="#lesson06" class="sidebar-link block px-3 py-2 rounded-md transition">06. Pointers & Memory</a>
+                    <a href="#lesson07" class="sidebar-link block px-3 py-2 rounded-md transition">07. Methods & Interfaces</a>
+                    <a href="#lesson08" class="sidebar-link block px-3 py-2 rounded-md transition">08. Concurrency & Channels</a>
+                    <a href="#lesson09" class="sidebar-link block px-3 py-2 rounded-md transition">09. Modules & Stdlib</a>
+                    <a href="#lesson10" class="sidebar-link block px-3 py-2 rounded-md transition">10. Unit Testing & Benchmarks</a>
                 </div>
             </div>
 
@@ -104,9 +108,9 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🧠 DSA & HackerRank</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#dsa-core" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Core DSA (Linked List, BST)</a>
-                    <a href="#dsa-advanced" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Advanced DSA (Trie, Heap, Graph)</a>
-                    <a href="#hackerrank" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">HackerRank 6 Top Patterns</a>
+                    <a href="#dsa-core" class="sidebar-link block px-3 py-2 rounded-md transition">Core DSA (Linked List, BST)</a>
+                    <a href="#dsa-advanced" class="sidebar-link block px-3 py-2 rounded-md transition">Advanced DSA (Trie, Heap, Graph)</a>
+                    <a href="#hackerrank" class="sidebar-link block px-3 py-2 rounded-md transition">HackerRank 6 Top Patterns</a>
                 </div>
             </div>
 
@@ -114,14 +118,14 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🏗️ Systems Engineering Projects</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#proj-rest" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 01: REST API (JWT + Postgres)</a>
-                    <a href="#proj-cli" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 02: CLI Todo Manager</a>
-                    <a href="#proj-grpc" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 03: gRPC Microservice</a>
-                    <a href="#proj-redis" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 04: Redis Caching (Cache-Aside)</a>
-                    <a href="#proj-queue" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 05: Event Queue & Worker Pool</a>
-                    <a href="#proj-db" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 06: Advanced SQL & Connection Pool</a>
-                    <a href="#proj-sysdesign" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 07: System Design (Rate Limiter & CB)</a>
-                    <a href="#proj-obs" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 08: Observability (slog & Prometheus)</a>
+                    <a href="#proj-rest" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 01: REST API (JWT + Postgres)</a>
+                    <a href="#proj-cli" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 02: CLI Todo Manager</a>
+                    <a href="#proj-grpc" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 03: gRPC Microservice</a>
+                    <a href="#proj-redis" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 04: Redis Caching (Cache-Aside)</a>
+                    <a href="#proj-queue" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 05: Event Queue & Worker Pool</a>
+                    <a href="#proj-db" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 06: Advanced SQL & Connection Pool</a>
+                    <a href="#proj-sysdesign" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 07: System Design (Rate Limiter & CB)</a>
+                    <a href="#proj-obs" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 08: Observability (slog & Prometheus)</a>
                 </div>
             </div>
         </nav>
@@ -394,7 +398,7 @@ now := time.Now().Format("2006-01-02 15:04:05")</code></pre>
 
         <!-- SECTION: DSA CORE -->
         <section id="dsa-core" class="space-y-4 border-t border-[#30363d] pt-8">
-            <h2 class="text-2xl font-bold text-white">🧠 Data Structures & Algorithms (DSA)</h2>
+            <h2 class="text-2xl font-bold text-white">🧠 Core Data Structures & Algorithms</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="glass-card p-5 rounded-xl">
                     <h3 class="font-bold text-white mb-2">1. Singly Linked List</h3>
@@ -407,6 +411,23 @@ now := time.Now().Format("2006-01-02 15:04:05")</code></pre>
                     <pre class="text-xs text-green-400 bg-[#0d1117] p-3 rounded-lg">   (50)
   /    \
 (30)  (70)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: DSA ADVANCED -->
+        <section id="dsa-advanced" class="space-y-4 border-t border-[#30363d] pt-8">
+            <h2 class="text-2xl font-bold text-white">🚀 Advanced DSA Algorithms</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-5 rounded-xl">
+                    <h3 class="font-bold text-white mb-2">1. Trie (Prefix Tree)</h3>
+                    <p class="text-xs text-gray-400 mb-3">Fast string prefix matching O(L) for Autocomplete.</p>
+                    <pre class="text-xs text-green-400 bg-[#0d1117] p-3 rounded-lg">Root -> 'g' -> 'o' -> 'l' -> 'a' -> 'n' -> 'g'</pre>
+                </div>
+                <div class="glass-card p-5 rounded-xl">
+                    <h3 class="font-bold text-white mb-2">2. Min-Heap Priority Queue</h3>
+                    <p class="text-xs text-gray-400 mb-3">O(log N) Priority Queue for scheduling.</p>
+                    <pre class="text-xs text-green-400 bg-[#0d1117] p-3 rounded-lg">Pop() returns minimum item instantly (O(1))</pre>
                 </div>
             </div>
         </section>
@@ -432,33 +453,99 @@ now := time.Now().Format("2006-01-02 15:04:05")</code></pre>
             </div>
         </section>
 
-        <!-- SECTION: BACKEND PROJECTS -->
+        <!-- PROJECT 01 -->
         <section id="proj-rest" class="space-y-4 border-t border-[#30363d] pt-8">
-            <h2 class="text-2xl font-bold text-white">🏗️ Systems Engineering Projects Matrix</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="glass-card p-5 rounded-xl border-l-4 border-blue-500">
-                    <h3 class="font-bold text-white">Project 01: REST API (JWT + PostgreSQL)</h3>
-                    <p class="text-xs text-gray-300 mt-2">JWT Bearer Token authentication, password hashing (`crypto/sha256`), GORM ORM auto-migrations.</p>
-                    <code class="block text-xs bg-[#0d1117] text-gray-300 p-2 mt-3 rounded">go run ./projects/01_rest_api/main.go</code>
-                </div>
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Project 01: REST API (JWT + PostgreSQL)</h2>
+                <span class="text-xs text-gray-400">projects/01_rest_api/main.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-2 border-l-4 border-blue-500">
+                <p class="text-sm text-gray-300">JWT Bearer Token authentication, password hashing (`crypto/sha256`), GORM ORM auto-migrations with PostgreSQL.</p>
+                <code class="block text-xs bg-[#0d1117] text-[#58a6ff] p-3 rounded-lg">go run ./projects/01_rest_api/main.go</code>
+            </div>
+        </section>
 
-                <div class="glass-card p-5 rounded-xl border-l-4 border-purple-500">
-                    <h3 class="font-bold text-white">Project 03: gRPC Microservice</h3>
-                    <p class="text-xs text-gray-300 mt-2">Binary Protocol Buffers (`proto3`) over HTTP/2 TCP sockets for 10x faster inter-service RPC communication.</p>
-                    <code class="block text-xs bg-[#0d1117] text-gray-300 p-2 mt-3 rounded">go run ./projects/03_grpc_service/server/main.go</code>
-                </div>
+        <!-- PROJECT 02 -->
+        <section id="proj-cli" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Project 02: CLI Todo Manager Application</h2>
+                <span class="text-xs text-gray-400">projects/02_cli_todo/main.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-2 border-l-4 border-green-500">
+                <p class="text-sm text-gray-300">Command-Line Interface (CLI) app with flags (`-add`, `-list`, `-complete`) and JSON file persistence.</p>
+                <code class="block text-xs bg-[#0d1117] text-[#58a6ff] p-3 rounded-lg">go run ./projects/02_cli_todo/main.go -list</code>
+            </div>
+        </section>
 
-                <div class="glass-card p-5 rounded-xl border-l-4 border-red-500">
-                    <h3 class="font-bold text-white">Project 04: Redis Caching (Cache-Aside)</h3>
-                    <p class="text-xs text-gray-300 mt-2">Cache-Aside pattern with TTL expiration for sub-millisecond data lookups.</p>
-                    <code class="block text-xs bg-[#0d1117] text-gray-300 p-2 mt-3 rounded">go run ./projects/04_redis_cache/main.go</code>
-                </div>
+        <!-- PROJECT 03 -->
+        <section id="proj-grpc" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Project 03: gRPC Microservice</h2>
+                <span class="text-xs text-gray-400">projects/03_grpc_service/</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-2 border-l-4 border-purple-500">
+                <p class="text-sm text-gray-300">High-performance binary Protocol Buffers (`proto3`) over HTTP/2 TCP sockets for 10x faster RPC inter-service communication.</p>
+                <code class="block text-xs bg-[#0d1117] text-[#58a6ff] p-3 rounded-lg">go run ./projects/03_grpc_service/server/main.go</code>
+            </div>
+        </section>
 
-                <div class="glass-card p-5 rounded-xl border-l-4 border-yellow-500">
-                    <h3 class="font-bold text-white">Project 07: System Design Patterns</h3>
-                    <p class="text-xs text-gray-300 mt-2">Token Bucket Rate Limiter (O(1)) and Circuit Breaker state machine for fault tolerance.</p>
-                    <code class="block text-xs bg-[#0d1117] text-gray-300 p-2 mt-3 rounded">go run ./projects/07_system_design/main.go</code>
-                </div>
+        <!-- PROJECT 04 -->
+        <section id="proj-redis" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Project 04: Redis Caching (Cache-Aside)</h2>
+                <span class="text-xs text-gray-400">projects/04_redis_cache/main.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-2 border-l-4 border-red-500">
+                <p class="text-sm text-gray-300">Cache-Aside pattern with TTL expiration for sub-millisecond data lookups and local in-memory fallback.</p>
+                <code class="block text-xs bg-[#0d1117] text-[#58a6ff] p-3 rounded-lg">go run ./projects/04_redis_cache/main.go</code>
+            </div>
+        </section>
+
+        <!-- PROJECT 05 -->
+        <section id="proj-queue" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Project 05: Event Queue & Worker Pool</h2>
+                <span class="text-xs text-gray-400">projects/05_event_queue/main.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-2 border-l-4 border-amber-500">
+                <p class="text-sm text-gray-300">Asynchronous Event-Driven Broker, Consumer Worker Pool, and Dead-Letter Queue (DLQ) for failed job retries.</p>
+                <code class="block text-xs bg-[#0d1117] text-[#58a6ff] p-3 rounded-lg">go run ./projects/05_event_queue/main.go</code>
+            </div>
+        </section>
+
+        <!-- PROJECT 06 -->
+        <section id="proj-db" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Project 06: Advanced SQL & Connection Pooling</h2>
+                <span class="text-xs text-gray-400">projects/06_database_advanced/main.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-2 border-l-4 border-cyan-500">
+                <p class="text-sm text-gray-300">Database Connection Pooling (`SetMaxOpenConns`, `SetMaxIdleConns`) and ACID Database Transactions (`BEGIN`, `COMMIT`, `ROLLBACK`).</p>
+                <code class="block text-xs bg-[#0d1117] text-[#58a6ff] p-3 rounded-lg">go run ./projects/06_database_advanced/main.go</code>
+            </div>
+        </section>
+
+        <!-- PROJECT 07 -->
+        <section id="proj-sysdesign" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Project 07: System Design Patterns</h2>
+                <span class="text-xs text-gray-400">projects/07_system_design/main.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-2 border-l-4 border-yellow-500">
+                <p class="text-sm text-gray-300">Token Bucket Rate Limiter ($O(1)$) for HTTP 429 protection and Circuit Breaker state machine (CLOSED -> OPEN -> HALF-OPEN).</p>
+                <code class="block text-xs bg-[#0d1117] text-[#58a6ff] p-3 rounded-lg">go run ./projects/07_system_design/main.go</code>
+            </div>
+        </section>
+
+        <!-- PROJECT 08 -->
+        <section id="proj-obs" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Project 08: Observability & Metrics</h2>
+                <span class="text-xs text-gray-400">projects/08_observability/main.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-2 border-l-4 border-[#00ADD8]">
+                <p class="text-sm text-gray-300">Structured JSON Logging (`log/slog`) and Prometheus Metrics Counter / Histogram simulation.</p>
+                <code class="block text-xs bg-[#0d1117] text-[#58a6ff] p-3 rounded-lg">go run ./projects/08_observability/main.go</code>
             </div>
         </section>
 
