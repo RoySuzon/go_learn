@@ -315,13 +315,13 @@
 
             <!-- FOOTER SECTION -->
             <footer class="text-center text-xs text-gray-500 dark:text-gray-400 pt-8 pb-12">
-                <p>Ultimate Go (Golang) Programming Master Course Documentation — Session Activity Persistence Enabled</p>
+                <p>Ultimate Go (Golang) Programming Master Course Documentation — Auto-Scroll Active Menu Item into View</p>
             </footer>
         </div>
 
     </main>
 
-    <!-- JAVASCRIPT FOR SESSION ACTIVITY PERSISTENCE, THEME & RENDERING -->
+    <!-- JAVASCRIPT FOR SIDEBAR AUTO SCROLL, SESSION & RENDERING -->
     <script>
         let currentMode = 'docs'; // 'docs' or 'code'
         let activeDocPath = 'ROADMAP.md';
@@ -372,8 +372,17 @@
         }
 
         // ---------------------------------------------------------
-        // 2. LAST LESSON SESSION ACTIVITY PERSISTENCE
+        // 2. LAST LESSON SESSION ACTIVITY & SIDEBAR AUTO SCROLL
         // ---------------------------------------------------------
+        function scrollActiveSidebarItemIntoView() {
+            setTimeout(() => {
+                const activeLink = document.querySelector('#navList a.sidebar-link.active');
+                if (activeLink) {
+                    activeLink.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                }
+            }, 100);
+        }
+
         function initLessonSession() {
             const savedDocPath = localStorage.getItem('activeDocPath');
             const savedCodePath = localStorage.getItem('activeCodePath');
@@ -397,6 +406,8 @@
                     link.classList.add('active');
                 }
             });
+
+            scrollActiveSidebarItemIntoView();
         }
 
         function saveLessonSession() {
@@ -514,6 +525,7 @@
                     document.getElementById('currentDocTitle').textContent = activeDocTitle;
                     
                     saveLessonSession();
+                    scrollActiveSidebarItemIntoView();
                     renderCurrentView();
                 });
             });
