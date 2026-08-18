@@ -5,7 +5,7 @@ import (
 )
 
 func TestJWTGenerationAndValidation(t *testing.T) {
-	userID := 101
+	var userID uint = 101
 	username := "goutom"
 
 	// 1. Generate JWT

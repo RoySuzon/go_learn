@@ -7,46 +7,53 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
+
+	"gorm.io/gorm"
 )
 
 // ---------------------------------------------------------
-// 1. DATA MODELS (User, Book, Claims)
+// 1. GORM DATA MODELS FOR POSTGRESQL
 // ---------------------------------------------------------
 
 type User struct {
-	ID       int    `json:"id"`
-	Username string `json:"username"`
-	Password string `json:"password"` // Stored as Hashed Password
+	ID        uint      `gorm:"primaryKey" json:"id"`
+	Username  string    `gorm:"uniqueIndex;not null" json:"username"`
+	Password  string    `gorm:"not null" json:"password"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type Book struct {
-	ID     int    `json:"id"`
-	Title  string `json:"title"`
-	Author string `json:"author"`
+	ID        uint      `gorm:"primaryKey" json:"id"`
+	Title     string    `gorm:"not null" json:"title"`
+	Author    string    `gorm:"not null" json:"author"`
+	Price     float64   `json:"price"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type JWTClaims struct {
-	UserID   int    `json:"user_id"`
+	UserID   uint   `json:"user_id"`
 	Username string `json:"username"`
-	Exp      int64  `json:"exp"` // Expiration Timestamp
+	Exp      int64  `json:"exp"`
 }
 
 // ---------------------------------------------------------
-// 2. IN-MEMORY STORAGE & SECRET KEY
+// 2. IN-MEMORY FALLBACK DB & SECRET KEY
 // ---------------------------------------------------------
 
 const jwtSecretKey = "super-secret-key-12345"
 
 var (
-	users = []User{
+	fallbackUsers = []User{
 		{ID: 1, Username: "goutom", Password: hashPassword("secret123")},
 	}
-	books = []Book{
-		{ID: 1, Title: "Go REST API & JWT Masterclass", Author: "Goutom Roy"},
-		{ID: 2, Title: "Concurrent Systems in Go", Author: "Sujan Roy"},
+	fallbackBooks = []Book{
+		{ID: 1, Title: "Go REST API & GORM PostgreSQL", Author: "Goutom Roy", Price: 450},
+		{ID: 2, Title: "Concurrent Systems in Go", Author: "Sujan Roy", Price: 380},
 	}
 	dbMutex sync.Mutex
 )
@@ -61,13 +68,10 @@ func hashPassword(password string) string {
 	return fmt.Sprintf("%x", h.Sum(nil))
 }
 
-// Generates Base64URL-encoded JWT (HS256)
-func generateJWT(userID int, username string) (string, error) {
-	// Header
+func generateJWT(userID uint, username string) (string, error) {
 	headerJSON, _ := json.Marshal(map[string]string{"alg": "HS256", "typ": "JWT"})
 	headerB64 := base64.RawURLEncoding.EncodeToString(headerJSON)
 
-	// Payload (1 Hour expiration)
 	claims := JWTClaims{
 		UserID:   userID,
 		Username: username,
@@ -76,7 +80,6 @@ func generateJWT(userID int, username string) (string, error) {
 	payloadJSON, _ := json.Marshal(claims)
 	payloadB64 := base64.RawURLEncoding.EncodeToString(payloadJSON)
 
-	// Signature
 	unsignedToken := headerB64 + "." + payloadB64
 	mac := hmac.New(sha256.New, []byte(jwtSecretKey))
 	mac.Write([]byte(unsignedToken))
@@ -85,7 +88,6 @@ func generateJWT(userID int, username string) (string, error) {
 	return unsignedToken + "." + signatureB64, nil
 }
 
-// Validates JWT Signature and Expiration
 func validateJWT(tokenString string) (*JWTClaims, error) {
 	parts := strings.Split(tokenString, ".")
 	if len(parts) != 3 {
@@ -119,7 +121,7 @@ func validateJWT(tokenString string) (*JWTClaims, error) {
 }
 
 // ---------------------------------------------------------
-// 4. AUTHENTICATION HANDLERS (Register, Login, Profile)
+// 4. API HANDLERS (POSTGRESQL + GORM)
 // ---------------------------------------------------------
 
 func registerHandler(w http.ResponseWriter, r *http.Request) {
@@ -138,26 +140,47 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	hashedPass := hashPassword(req.Password)
+
+	// If PostgreSQL GORM is connected
+	if DB != nil {
+		var count int64
+		DB.Model(&User{}).Where("username = ?", req.Username).Count(&count)
+		if count > 0 {
+			http.Error(w, `{"error": "Username already exists in PostgreSQL"}`, http.StatusConflict)
+			return
+		}
+
+		user := User{Username: req.Username, Password: hashedPass}
+		if err := DB.Create(&user).Error; err != nil {
+			http.Error(w, `{"error": "Failed to save user to PostgreSQL"}`, http.StatusInternalServerError)
+			return
+		}
+
+		w.WriteHeader(http.StatusCreated)
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"message": "User registered in PostgreSQL DB!",
+			"user_id": user.ID,
+		})
+		return
+	}
+
+	// In-memory fallback
 	dbMutex.Lock()
 	defer dbMutex.Unlock()
-
-	for _, u := range users {
+	for _, u := range fallbackUsers {
 		if u.Username == req.Username {
 			http.Error(w, `{"error": "Username already exists"}`, http.StatusConflict)
 			return
 		}
 	}
 
-	newUser := User{
-		ID:       len(users) + 1,
-		Username: req.Username,
-		Password: hashPassword(req.Password),
-	}
-	users = append(users, newUser)
+	newUser := User{ID: uint(len(fallbackUsers) + 1), Username: req.Username, Password: hashedPass}
+	fallbackUsers = append(fallbackUsers, newUser)
 
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(map[string]interface{}{
-		"message": "User registered successfully!",
+		"message": "User registered successfully (In-Memory)!",
 		"user_id": newUser.ID,
 	})
 }
@@ -178,24 +201,34 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	hashedInputPassword := hashPassword(req.Password)
+	hashedPass := hashPassword(req.Password)
+	var userID uint
+	var found bool
 
-	dbMutex.Lock()
-	var foundUser *User
-	for _, u := range users {
-		if u.Username == req.Username && u.Password == hashedInputPassword {
-			foundUser = &u
-			break
+	if DB != nil {
+		var user User
+		if err := DB.Where("username = ? AND password = ?", req.Username, hashedPass).First(&user).Error; err == nil {
+			userID = user.ID
+			found = true
 		}
+	} else {
+		dbMutex.Lock()
+		for _, u := range fallbackUsers {
+			if u.Username == req.Username && u.Password == hashedPass {
+				userID = u.ID
+				found = true
+				break
+			}
+		}
+		dbMutex.Unlock()
 	}
-	dbMutex.Unlock()
 
-	if foundUser == nil {
+	if !found {
 		http.Error(w, `{"error": "Invalid username or password"}`, http.StatusUnauthorized)
 		return
 	}
 
-	token, err := generateJWT(foundUser.ID, foundUser.Username)
+	token, err := generateJWT(userID, req.Username)
 	if err != nil {
 		http.Error(w, `{"error": "Failed to generate token"}`, http.StatusInternalServerError)
 		return
@@ -207,9 +240,20 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-// ---------------------------------------------------------
-// 5. PROTECTED MIDDLEWARE & HANDLERS
-// ---------------------------------------------------------
+func booksHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	if DB != nil {
+		var bList []Book
+		DB.Find(&bList)
+		json.NewEncoder(w).Encode(bList)
+		return
+	}
+
+	dbMutex.Lock()
+	defer dbMutex.Unlock()
+	json.NewEncoder(w).Encode(fallbackBooks)
+}
 
 func authMiddleware(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -227,7 +271,6 @@ func authMiddleware(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		// Proceed to handler
 		r.Header.Set("X-User-ID", fmt.Sprintf("%d", claims.UserID))
 		r.Header.Set("X-Username", claims.Username)
 		next(w, r)
@@ -245,27 +288,34 @@ func profileHandler(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-func booksHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	dbMutex.Lock()
-	defer dbMutex.Unlock()
-	json.NewEncoder(w).Encode(books)
-}
+// ---------------------------------------------------------
+// 5. SERVER ENTRYPOINT
+// ---------------------------------------------------------
 
 func main() {
+	dsn := os.Getenv("POSTGRES_DSN")
+	if dsn != "" {
+		_, err := initDatabase(dsn)
+		if err != nil {
+			fmt.Println("⚠️ PostgreSQL Warning:", err)
+			fmt.Println("ℹ️ Falling back to In-Memory storage mode.")
+		}
+	} else {
+		fmt.Println("ℹ️ No POSTGRES_DSN provided. Running in Standalone / In-Memory mode.")
+	}
+
 	http.HandleFunc("/api/register", registerHandler)
 	http.HandleFunc("/api/login", loginHandler)
 	http.HandleFunc("/api/books", booksHandler)
 	http.HandleFunc("/api/profile", authMiddleware(profileHandler))
 
 	fmt.Println("==================================================")
-	fmt.Println(" 🚀 REST API with JWT Auth Server is Running!")
-	fmt.Println(" 📍 Public Endpoints:")
+	fmt.Println(" 🚀 REST API with PostgreSQL & GORM Server Active")
+	fmt.Println(" 📍 Endpoints:")
 	fmt.Println("    - POST /api/register")
 	fmt.Println("    - POST /api/login")
 	fmt.Println("    - GET  /api/books")
-	fmt.Println(" 🔒 Protected Endpoints (Requires Bearer Token):")
-	fmt.Println("    - GET  /api/profile")
+	fmt.Println("    - GET  /api/profile (Protected)")
 	fmt.Println("==================================================")
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
