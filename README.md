@@ -1,11 +1,11 @@
-# 🚀 Ultimate Go (Golang) Master Course & Projects 🐹
+# 🚀 Ultimate Go (Golang) Master Course, DSA & Projects 🐹
 
 [![Go CI](https://github.com/RoySuzon/go_learn/actions/workflows/go.yml/badge.svg)](https://github.com/RoySuzon/go_learn/actions/workflows/go.yml)
 ![Go Version](https://img.shields.io/badge/Go-1.26+-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 ![Language](https://img.shields.io/badge/Bilingual-English%20%7C%20Bangla-blue?style=for-the-badge)
 
-Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! This repository takes you from **zero to production-ready developer** in Go programming with clear explanations, runnable code snippets, unit tests, real-world projects, and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
+Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! This repository takes you from **zero to production-ready developer** in Go programming with clear explanations, runnable code snippets, unit tests, real-world projects, Data Structures & Algorithms (DSA), and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
 
 ---
 
@@ -23,7 +23,8 @@ Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! Th
 | **08** | **Concurrency (Goroutines, Channels, Mutex)** | [English Section 8](golang_basic_course.md#8-concurrency) | [বাংলা অধ্যায় ৮](golang_basic_course_bangla.md#8-কনকারেন্সি) | [`lesson08/`](lesson08/08_concurrency.go) |
 | **09** | **Modules & Standard Library** | [English Section 9](golang_basic_course.md#9-modules--standard-library) | [বাংলা অধ্যায় ৯](golang_basic_course_bangla.md#9-মডিউল-এবং-স্ট্যান্ডার্ড-লাইব্রেরি) | [`lesson09/`](lesson09/09_modules_stdlib.go) |
 | **10** | **Unit Testing & Benchmarks** | [Testing Guide](golang_basic_course.md) | [টেস্টিং গাইড](golang_basic_course_bangla.md) | [`lesson10/`](lesson10/10_unit_testing_test.go) |
-| 🌐 | **Project 1: RESTful Web API Server** | - | [REST API গাইড](golang_basic_course_bangla.md) | [`projects/01_rest_api/`](projects/01_rest_api/main.go) |
+| 🧠 | **Data Structures & Algorithms (DSA)** | [DSA Guide](dsa/README.md) | [বাংলা DSA গাইড](dsa/README.md) | [`dsa/`](dsa/) |
+| 🌐 | **Project 1: RESTful API (JWT + GORM + Postgres)** | - | [REST API গাইড](golang_basic_course_bangla.md) | [`projects/01_rest_api/`](projects/01_rest_api/main.go) |
 | 📝 | **Project 2: CLI Todo Manager App** | - | [CLI App গাইড](golang_basic_course_bangla.md) | [`projects/02_cli_todo/`](projects/02_cli_todo/main.go) |
 | 🌟 | **Master All-in-One Example** | [Full Guide](golang_basic_course.md) | [বাংলা গাইড](golang_basic_course_bangla.md) | [`bangla_example/`](bangla_example/bangla_master_example.go) |
 
@@ -32,18 +33,15 @@ Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! Th
 ## ⚡ Quick Start & Running Commands
 
 ```bash
-# 1. Run Unit Tests & Benchmarks
+# 1. Run All Unit Tests & Benchmarks (Includes DSA & REST API)
 go test -v ./...
-go test -bench=. ./lesson10/...
+go test -v ./dsa/...
 
-# 2. Run REST API Server with JWT Auth
+# 2. Run REST API Server with JWT Auth & PostgreSQL
 go run ./projects/01_rest_api/main.go
 # Open browser / Postman: http://localhost:8080/api/books
 
-# 3. Docker Deployment (Containerized API)
-docker build -t go-rest-api .
-docker run -p 8080:8080 go-rest-api
-# OR with Docker Compose:
+# 3. Docker Deployment (Containerized API & PostgreSQL Service)
 docker compose up -d
 
 # 4. Run CLI Todo App
@@ -64,19 +62,23 @@ go run ./bangla_example/bangla_master_example.go
 ├── 📄 README.md                        # Master GitHub Homepage
 ├── 📄 golang_basic_course.md           # English Course Manual
 ├── 📄 golang_basic_course_bangla.md    # বাংলা কোর্স গাইড
+├── 📄 Dockerfile                       # Multi-stage Dockerfile
+├── 📄 docker-compose.yml               # Go App + PostgreSQL 15 DB Setup
 ├── 📄 go.mod                           # Go Module Definition
 ├── 📁 .github/workflows/               # GitHub Actions CI Workflow
 │   └── 📄 go.yml
-├── 📁 lesson01/ to lesson09/           # Foundational Core Lessons
-├── 📁 lesson10/                        # Unit Testing & Benchmarking
-│   └── 📄 10_unit_testing_test.go
+├── 📁 dsa/                             # Data Structures & Algorithms
+│   ├── 📄 01_linked_list.go
+│   ├── 📄 02_stack_queue.go
+│   ├── 📄 03_binary_tree.go
+│   ├── 📄 04_searching_sorting.go
+│   ├── 📄 dsa_test.go
+│   └── 📄 README.md
+├── 📁 lesson01/ to lesson10/           # Core Lessons & Unit Testing
 ├── 📁 projects/
-│   ├── 📁 01_rest_api/                 # RESTful HTTP API Server
-│   │   └── 📄 main.go
+│   ├── 📁 01_rest_api/                 # RESTful HTTP API (JWT + PostgreSQL)
 │   └── 📁 02_cli_todo/                 # CLI Task Manager with Persistence
-│       └── 📄 main.go
 └── 📁 bangla_example/                  # Bangla Master Example
-    └── 📄 bangla_master_example.go
 ```
 
 ---
