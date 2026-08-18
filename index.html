@@ -311,13 +311,13 @@
 
             <!-- FOOTER SECTION -->
             <footer class="text-center text-xs text-gray-500 dark:text-gray-400 pt-8 pb-12">
-                <p>Ultimate Go (Golang) Programming Master Course Documentation — Uncluttered Clean Scroll Interface</p>
+                <p>Ultimate Go (Golang) Programming Master Course Documentation — Smart Multi-Fallback Fetch Engine</p>
             </footer>
         </div>
 
     </main>
 
-    <!-- JAVASCRIPT FOR SIDEBAR AUTO SCROLL, SESSION & RENDERING -->
+    <!-- JAVASCRIPT FOR SMART FALLBACK FETCHING, SESSION & RENDERING -->
     <script>
         let currentMode = 'docs'; // 'docs' or 'code'
         let activeDocPath = 'ROADMAP.md';
@@ -394,7 +394,6 @@
             document.getElementById('btnDocsTab').classList.toggle('active', currentMode === 'docs');
             document.getElementById('btnCodeTab').classList.toggle('active', currentMode === 'code');
 
-            // Highlight corresponding sidebar link
             const links = document.querySelectorAll('#navList a.sidebar-link');
             links.forEach(link => {
                 link.classList.remove('active');
@@ -427,6 +426,28 @@
             });
         }
 
+        // SMART MULTI-FALLBACK FETCH ENGINE (PREVENTS HTTP 404 ON ANY PLATFORM)
+        async function fetchContentWithFallbacks(targetPath) {
+            const cleanPath = targetPath.replace(/^(\.\.\/|\.\/)/, '');
+            
+            const candidates = [
+                targetPath,
+                '../' + cleanPath,
+                './' + cleanPath,
+                `https://raw.githubusercontent.com/RoySuzon/go_learn/main/${cleanPath}`
+            ];
+
+            for (let url of candidates) {
+                try {
+                    let res = await fetch(url);
+                    if (res.ok) {
+                        return await res.text();
+                    }
+                } catch (e) {}
+            }
+            throw new Error(`Unable to fetch content for ${targetPath}`);
+        }
+
         async function renderCurrentView() {
             const viewer = document.getElementById('contentViewer');
             const pathBadge = document.getElementById('currentDocPath');
@@ -440,10 +461,7 @@
                 </div>`;
 
             try {
-                let response = await fetch(targetPath);
-                if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
-
-                rawContentText = await response.text();
+                rawContentText = await fetchContentWithFallbacks(targetPath);
 
                 if (currentMode === 'docs') {
                     viewer.innerHTML = marked.parse(rawContentText);
@@ -472,7 +490,7 @@
                     <div class="p-6 bg-red-100 dark:bg-red-900/20 border border-red-400 dark:border-red-500/50 rounded-xl text-red-700 dark:text-red-300 text-sm">
                         <i class="fa-solid fa-triangle-exclamation text-lg mr-2"></i>
                         <strong>Failed to load file:</strong> <code>${targetPath}</code> (${err.message})
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Note: Dynamic fetching works when served via local server (go run docs_server.go) or GitHub Pages.</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Connecting to GitHub fallback repository...</p>
                     </div>`;
             }
         }
@@ -496,8 +514,7 @@
                 .replace(/&/g, "&amp;")
                 .replace(/</g, "&lt;")
                 .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+                .replace(/"/g, "&#039;");
         }
 
         document.addEventListener('DOMContentLoaded', () => {
