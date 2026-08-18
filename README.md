@@ -36,16 +36,22 @@ Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! Th
 go test -v ./...
 go test -bench=. ./lesson10/...
 
-# 2. Run REST API Server
+# 2. Run REST API Server with JWT Auth
 go run ./projects/01_rest_api/main.go
 # Open browser / Postman: http://localhost:8080/api/books
 
-# 3. Run CLI Todo App
+# 3. Docker Deployment (Containerized API)
+docker build -t go-rest-api .
+docker run -p 8080:8080 go-rest-api
+# OR with Docker Compose:
+docker compose up -d
+
+# 4. Run CLI Todo App
 go run ./projects/02_cli_todo/main.go -add "Go প্রোগ্রামিং শেখা"
 go run ./projects/02_cli_todo/main.go -list
 go run ./projects/02_cli_todo/main.go -complete 1
 
-# 4. Run Bangla Master Example
+# 5. Run Bangla Master Example
 go run ./bangla_example/bangla_master_example.go
 ```
 

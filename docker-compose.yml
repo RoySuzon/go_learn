@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  go-rest-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go_rest_api_service
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - ENV=production
+    restart: always
