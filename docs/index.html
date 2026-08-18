@@ -30,10 +30,24 @@
             border: 1px solid rgba(48, 54, 61, 0.7);
         }
 
-        .sidebar-link:hover, .sidebar-link.active {
-            background-color: #1f6feb22;
+        /* Sidebar active link indicator styling */
+        .sidebar-link {
+            transition: all 0.2s ease-in-out;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-link:hover {
+            background-color: rgba(31, 111, 235, 0.15);
             color: #58a6ff;
-            border-left: 3px solid #58a6ff;
+            border-left-color: rgba(88, 166, 255, 0.5);
+        }
+
+        .sidebar-link.active {
+            background-color: rgba(31, 111, 235, 0.25) !important;
+            color: #58a6ff !important;
+            border-left-color: #58a6ff !important;
+            font-weight: 600 !important;
+            box-shadow: inset 3px 0 0 0 #58a6ff;
         }
 
         /* Custom Scrollbar */
@@ -83,7 +97,7 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🗺️ Hierarchy Roadmap</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#roadmap" class="sidebar-link block px-3 py-2 rounded-md transition">1. Complete Learning Path</a>
+                    <a href="#roadmap" class="sidebar-link active block px-3 py-2 rounded-r-md">1. Complete Learning Path</a>
                 </div>
             </div>
 
@@ -91,16 +105,16 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🟢 Core Lessons (1 - 10)</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#lesson01" class="sidebar-link block px-3 py-2 rounded-md transition">01. Hello World & Structure</a>
-                    <a href="#lesson02" class="sidebar-link block px-3 py-2 rounded-md transition">02. Variables & Data Types</a>
-                    <a href="#lesson03" class="sidebar-link block px-3 py-2 rounded-md transition">03. Control Flow (if/switch/for)</a>
-                    <a href="#lesson04" class="sidebar-link block px-3 py-2 rounded-md transition">04. Functions & Error Handling</a>
-                    <a href="#lesson05" class="sidebar-link block px-3 py-2 rounded-md transition">05. Data Structures (Slices/Maps)</a>
-                    <a href="#lesson06" class="sidebar-link block px-3 py-2 rounded-md transition">06. Pointers & Memory</a>
-                    <a href="#lesson07" class="sidebar-link block px-3 py-2 rounded-md transition">07. Methods & Interfaces</a>
-                    <a href="#lesson08" class="sidebar-link block px-3 py-2 rounded-md transition">08. Concurrency & Channels</a>
-                    <a href="#lesson09" class="sidebar-link block px-3 py-2 rounded-md transition">09. Modules & Stdlib</a>
-                    <a href="#lesson10" class="sidebar-link block px-3 py-2 rounded-md transition">10. Unit Testing & Benchmarks</a>
+                    <a href="#lesson01" class="sidebar-link block px-3 py-2 rounded-r-md">01. Hello World & Structure</a>
+                    <a href="#lesson02" class="sidebar-link block px-3 py-2 rounded-r-md">02. Variables & Data Types</a>
+                    <a href="#lesson03" class="sidebar-link block px-3 py-2 rounded-r-md">03. Control Flow (if/switch/for)</a>
+                    <a href="#lesson04" class="sidebar-link block px-3 py-2 rounded-r-md">04. Functions & Error Handling</a>
+                    <a href="#lesson05" class="sidebar-link block px-3 py-2 rounded-r-md">05. Data Structures (Slices/Maps)</a>
+                    <a href="#lesson06" class="sidebar-link block px-3 py-2 rounded-r-md">06. Pointers & Memory</a>
+                    <a href="#lesson07" class="sidebar-link block px-3 py-2 rounded-r-md">07. Methods & Interfaces</a>
+                    <a href="#lesson08" class="sidebar-link block px-3 py-2 rounded-r-md">08. Concurrency & Channels</a>
+                    <a href="#lesson09" class="sidebar-link block px-3 py-2 rounded-r-md">09. Modules & Stdlib</a>
+                    <a href="#lesson10" class="sidebar-link block px-3 py-2 rounded-r-md">10. Unit Testing & Benchmarks</a>
                 </div>
             </div>
 
@@ -108,9 +122,9 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🧠 DSA & HackerRank</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#dsa-core" class="sidebar-link block px-3 py-2 rounded-md transition">Core DSA (Linked List, BST)</a>
-                    <a href="#dsa-advanced" class="sidebar-link block px-3 py-2 rounded-md transition">Advanced DSA (Trie, Heap, Graph)</a>
-                    <a href="#hackerrank" class="sidebar-link block px-3 py-2 rounded-md transition">HackerRank 6 Top Patterns</a>
+                    <a href="#dsa-core" class="sidebar-link block px-3 py-2 rounded-r-md">Core DSA (Linked List, BST)</a>
+                    <a href="#dsa-advanced" class="sidebar-link block px-3 py-2 rounded-r-md">Advanced DSA (Trie, Heap, Graph)</a>
+                    <a href="#hackerrank" class="sidebar-link block px-3 py-2 rounded-r-md">HackerRank 6 Top Patterns</a>
                 </div>
             </div>
 
@@ -118,14 +132,14 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🏗️ Systems Engineering Projects</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#proj-rest" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 01: REST API (JWT + Postgres)</a>
-                    <a href="#proj-cli" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 02: CLI Todo Manager</a>
-                    <a href="#proj-grpc" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 03: gRPC Microservice</a>
-                    <a href="#proj-redis" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 04: Redis Caching (Cache-Aside)</a>
-                    <a href="#proj-queue" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 05: Event Queue & Worker Pool</a>
-                    <a href="#proj-db" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 06: Advanced SQL & Connection Pool</a>
-                    <a href="#proj-sysdesign" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 07: System Design (Rate Limiter & CB)</a>
-                    <a href="#proj-obs" class="sidebar-link block px-3 py-2 rounded-md transition">Proj 08: Observability (slog & Prometheus)</a>
+                    <a href="#proj-rest" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 01: REST API (JWT + Postgres)</a>
+                    <a href="#proj-cli" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 02: CLI Todo Manager</a>
+                    <a href="#proj-grpc" class="sidebar-link block px-3 py-2 rounded-md">Proj 03: gRPC Microservice</a>
+                    <a href="#proj-redis" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 04: Redis Caching (Cache-Aside)</a>
+                    <a href="#proj-queue" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 05: Event Queue & Worker Pool</a>
+                    <a href="#proj-db" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 06: Advanced SQL & Connection Pool</a>
+                    <a href="#proj-sysdesign" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 07: System Design (Rate Limiter & CB)</a>
+                    <a href="#proj-obs" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 08: Observability (slog & Prometheus)</a>
                 </div>
             </div>
         </nav>
@@ -556,7 +570,7 @@ now := time.Now().Format("2006-01-02 15:04:05")</code></pre>
 
     </main>
 
-    <!-- INTERACTIVE JAVASCRIPT FOR SEARCH & NAVIGATION -->
+    <!-- INTERACTIVE JAVASCRIPT FOR SEARCH & SCROLLSPY ACTIVE INDICATOR -->
     <script>
         function filterDocs() {
             const query = document.getElementById('searchInput').value.toLowerCase();
@@ -571,6 +585,44 @@ now := time.Now().Format("2006-01-02 15:04:05")</code></pre>
                 }
             });
         }
+
+        // Automatic ScrollSpy Active Indicator Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('#navList a.sidebar-link');
+            const mainContent = document.getElementById('mainContent');
+
+            function setActiveLink() {
+                let currentSectionId = '';
+                const mainTop = mainContent.scrollTop;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    if (mainTop >= sectionTop) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                if (currentSectionId) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + currentSectionId) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            }
+
+            mainContent.addEventListener('scroll', setActiveLink);
+
+            // Click event for instant active state update
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
+        });
     </script>
 </body>
 </html>
