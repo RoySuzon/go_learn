@@ -5,7 +5,7 @@
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 ![Language](https://img.shields.io/badge/Bilingual-English%20%7C%20Bangla-blue?style=for-the-badge)
 
-Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! This repository takes you from **zero to production-ready Senior Backend Developer** in Go programming with clear step-by-step hierarchy roadmap, runnable code snippets, unit tests, real-world projects, Data Structures & Algorithms (DSA), HackerRank/LeetCode solutions, System Architecture guides, and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
+Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! This repository takes you from **zero to production-ready Senior Backend Developer** in Go programming with clear step-by-step hierarchy roadmap, runnable code snippets, unit tests, real-world projects, gRPC microservices, Data Structures & Algorithms (DSA), HackerRank/LeetCode solutions, System Architecture guides, and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
 
 ---
 
@@ -29,8 +29,8 @@ Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! Th
  [Phase 5: DSA & HackerRank Challenges]
        │  (Linked List ──► Trees/Graphs ──► HackerRank 6 Patterns)
        ▼
- [Phase 6: Real-World Web & CLI Applications]
-       │  (CLI Todo App ──► REST API Server with JWT & PostgreSQL)
+ [Phase 6: Real-World Web, CLI & Microservices]
+       │  (CLI Todo App ──► REST API Server ──► gRPC Microservice)
        ▼
  [Phase 7: DevOps & System Architecture]
           (Docker ──► Docker Compose ──► System Architecture Roadmap)
@@ -59,6 +59,7 @@ Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! Th
 | 🏆 | **HackerRank & LeetCode Solutions** | [Solutions Guide](dsa/hackerrank/README.md) | [বাংলা সমস্যা গাইড](dsa/hackerrank/README.md) | [`dsa/hackerrank/`](dsa/hackerrank/) |
 | 🌐 | **Project 1: RESTful API (JWT + GORM + Postgres)** | - | [REST API গাইড](golang_basic_course_bangla.md) | [`projects/01_rest_api/`](projects/01_rest_api/main.go) |
 | 📝 | **Project 2: CLI Todo Manager App** | - | [CLI App গাইড](golang_basic_course_bangla.md) | [`projects/02_cli_todo/`](projects/02_cli_todo/main.go) |
+| ⚡ | **Project 3: High-Performance gRPC Service** | - | [gRPC গাইড](projects/03_grpc_service/README.md) | [`projects/03_grpc_service/`](projects/03_grpc_service/) |
 | 🏗️ | **System Architecture & Senior Stack** | - | [আর্কিটেকচার গাইড](docs/system_architecture_bangla.md) | [`docs/`](docs/) |
 
 ---
@@ -69,9 +70,9 @@ Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! Th
 # 1. Run All Unit Tests
 go test -v ./...
 
-# 2. Run HackerRank Challenge Solutions (with Bangla explanations)
-go run ./dsa/hackerrank/01_two_sum/main.go
-go run ./dsa/hackerrank/05_number_of_islands/main.go
+# 2. Run High-Performance gRPC Microservice
+go run ./projects/03_grpc_service/server/main.go   # Terminal 1
+go run ./projects/03_grpc_service/client/main.go   # Terminal 2
 
 # 3. Run REST API Server with JWT Auth & PostgreSQL
 go run ./projects/01_rest_api/main.go
@@ -106,7 +107,10 @@ go run ./projects/02_cli_todo/main.go -list
 │   ├── 📁 hackerrank/                  # Standalone HackerRank Solutions
 │   └── 📄 dsa_test.go
 ├── 📁 lesson01/ to lesson10/           # Core Lessons & Unit Testing
-└── 📁 projects/                        # Web API & CLI Applications
+└── 📁 projects/                        # Web API, CLI & gRPC Microservice
+    ├── 📁 01_rest_api/
+    ├── 📁 02_cli_todo/
+    └── 📁 03_grpc_service/             # High-Speed gRPC & ProtoBuf Microservice
 ```
 
 ---
