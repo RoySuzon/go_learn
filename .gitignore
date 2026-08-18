@@ -1,0 +1,25 @@
+# Binaries for SDKs and executables
+*.exe
+*.exe;
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go test binaries
+*.test
+
+# Output of go build
+/myapp
+/go_lang
+
+# IDE / Editor config
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS specific files
+.DS_Store
+Thumbs.db
