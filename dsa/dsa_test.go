@@ -83,7 +83,6 @@ func TestSearchingAndSorting(t *testing.T) {
 }
 
 func TestAdvancedDSA(t *testing.T) {
-	// 1. Trie Test
 	trie := NewTrie()
 	trie.Insert("golang")
 	trie.Insert("google")
@@ -91,14 +90,12 @@ func TestAdvancedDSA(t *testing.T) {
 		t.Errorf("Trie StartsWith('gol') expected true")
 	}
 
-	// 2. MinHeap Test
 	minHeap := GetMinHeap([]int{50, 10, 30})
 	minVal := heap.Pop(minHeap).(int)
 	if minVal != 10 {
 		t.Errorf("MinHeap Pop expected 10, got %d", minVal)
 	}
 
-	// 3. Graph BFS Test
 	g := NewGraph()
 	g.AddEdge(1, 2)
 	g.AddEdge(1, 3)
@@ -107,15 +104,55 @@ func TestAdvancedDSA(t *testing.T) {
 		t.Errorf("BFS expected 3 nodes visited, got %d", len(bfsResult))
 	}
 
-	// 4. Sliding Window Test
 	maxSum := MaxSubArraySum([]int{2, 1, 5, 1, 3, 2}, 3)
-	if maxSum != 9 { // 5+1+3 = 9
+	if maxSum != 9 {
 		t.Errorf("MaxSubArraySum expected 9, got %d", maxSum)
 	}
 
-	// 5. DP Fib Test
 	fibVal := FibMemoized(10, make(map[int]int))
 	if fibVal != 55 {
 		t.Errorf("FibMemoized(10) expected 55, got %d", fibVal)
+	}
+}
+
+func TestHackerRankLeetCodePatterns(t *testing.T) {
+	// 1. Two Sum
+	twoSumRes := TwoSum([]int{2, 7, 11, 15}, 9)
+	expectedIndices := []int{0, 1}
+	if !reflect.DeepEqual(twoSumRes, expectedIndices) {
+		t.Errorf("TwoSum expected %v, got %v", expectedIndices, twoSumRes)
+	}
+
+	// 2. Valid Parentheses
+	if !IsValidParentheses("{[()]}") {
+		t.Errorf("IsValidParentheses expected true")
+	}
+	if IsValidParentheses("{[(])}") {
+		t.Errorf("IsValidParentheses expected false")
+	}
+
+	// 3. Reverse Linked List
+	head := &Node{Data: 1, Next: &Node{Data: 2, Next: &Node{Data: 3}}}
+	reversed := ReverseLinkedList(head)
+	if reversed.Data != 3 || reversed.Next.Data != 2 {
+		t.Errorf("ReverseLinkedList failed")
+	}
+
+	// 4. Num Islands
+	grid := [][]byte{
+		{'1', '1', '0', '0'},
+		{'1', '1', '0', '0'},
+		{'0', '0', '1', '0'},
+		{'0', '0', '0', '1'},
+	}
+	islands := NumIslands(grid)
+	if islands != 3 {
+		t.Errorf("NumIslands expected 3, got %d", islands)
+	}
+
+	// 5. Coin Change
+	minCoins := CoinChange([]int{1, 2, 5}, 11) // 5+5+1 = 3 coins
+	if minCoins != 3 {
+		t.Errorf("CoinChange expected 3, got %d", minCoins)
 	}
 }
