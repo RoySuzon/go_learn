@@ -1,11 +1,11 @@
-# 🚀 Ultimate Go (Golang) Master Course, DSA & Projects 🐹
+# 🚀 Ultimate Go (Golang) Master Course, DSA & Architecture 🐹
 
 [![Go CI](https://github.com/RoySuzon/go_learn/actions/workflows/go.yml/badge.svg)](https://github.com/RoySuzon/go_learn/actions/workflows/go.yml)
 ![Go Version](https://img.shields.io/badge/Go-1.26+-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 ![Language](https://img.shields.io/badge/Bilingual-English%20%7C%20Bangla-blue?style=for-the-badge)
 
-Welcome to the **Ultimate Go (Golang) Master Course Repository**! This repository takes you from **zero to production-ready developer** in Go programming with clear step-by-step hierarchy roadmap, runnable code snippets, unit tests, real-world projects, Data Structures & Algorithms (DSA), HackerRank/LeetCode solutions, and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
+Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! This repository takes you from **zero to production-ready Senior Backend Developer** in Go programming with clear step-by-step hierarchy roadmap, runnable code snippets, unit tests, real-world projects, Data Structures & Algorithms (DSA), HackerRank/LeetCode solutions, System Architecture guides, and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
 
 ---
 
@@ -32,11 +32,12 @@ Welcome to the **Ultimate Go (Golang) Master Course Repository**! This repositor
  [Phase 6: Real-World Web & CLI Applications]
        │  (CLI Todo App ──► REST API Server with JWT & PostgreSQL)
        ▼
- [Phase 7: DevOps & Production Deployment]
-          (Multi-Stage Docker ──► Docker Compose ──► GitHub CI/CD Actions)
+ [Phase 7: DevOps & System Architecture]
+          (Docker ──► Docker Compose ──► System Architecture Roadmap)
 ```
 
-👉 **[Read the Full Step-by-Step Hierarchy Roadmap (ROADMAP.md)](ROADMAP.md)**
+👉 **[Read the Full Step-by-Step Hierarchy Roadmap (ROADMAP.md)](ROADMAP.md)**  
+👉 **[Read System Architecture & Senior Software Engineering Guide (Bangla)](docs/system_architecture_bangla.md)**
 
 ---
 
@@ -58,6 +59,7 @@ Welcome to the **Ultimate Go (Golang) Master Course Repository**! This repositor
 | 🏆 | **HackerRank & LeetCode Solutions** | [Solutions Guide](dsa/hackerrank/README.md) | [বাংলা সমস্যা গাইড](dsa/hackerrank/README.md) | [`dsa/hackerrank/`](dsa/hackerrank/) |
 | 🌐 | **Project 1: RESTful API (JWT + GORM + Postgres)** | - | [REST API গাইড](golang_basic_course_bangla.md) | [`projects/01_rest_api/`](projects/01_rest_api/main.go) |
 | 📝 | **Project 2: CLI Todo Manager App** | - | [CLI App গাইড](golang_basic_course_bangla.md) | [`projects/02_cli_todo/`](projects/02_cli_todo/main.go) |
+| 🏗️ | **System Architecture & Senior Stack** | - | [আর্কিটেকচার গাইড](docs/system_architecture_bangla.md) | [`docs/`](docs/) |
 
 ---
 
@@ -97,6 +99,8 @@ go run ./projects/02_cli_todo/main.go -list
 ├── 📄 go.mod                           # Go Module Definition
 ├── 📁 .github/workflows/               # GitHub Actions CI Workflow
 │   └── 📄 go.yml
+├── 📁 docs/                            # System Architecture Guides
+│   └── 📄 system_architecture_bangla.md
 ├── 📁 dsa/                             # Data Structures & Algorithms
 │   ├── 📁 01_linked_list/ to 05_advanced_dsa/
 │   ├── 📁 hackerrank/                  # Standalone HackerRank Solutions
