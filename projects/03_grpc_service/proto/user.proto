@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "projects/03_grpc_service/pb";
+
+// User Service Interface Definition
+service UserService {
+  rpc GetUser (UserRequest) returns (UserResponse);
+  rpc CreateUser (CreateUserRequest) returns (UserResponse);
+}
+
+message UserRequest {
+  int32 id = 1;
+}
+
+message CreateUserRequest {
+  string username = 1;
+  string email = 2;
+}
+
+message UserResponse {
+  int32 id = 1;
+  string username = 2;
+  string email = 3;
+}
