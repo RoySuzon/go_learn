@@ -315,21 +315,22 @@
 
             <!-- FOOTER SECTION -->
             <footer class="text-center text-xs text-gray-500 dark:text-gray-400 pt-8 pb-12">
-                <p>Ultimate Go (Golang) Programming Master Course Documentation — Full Width View Enabled</p>
+                <p>Ultimate Go (Golang) Programming Master Course Documentation — Session Activity Persistence Enabled</p>
             </footer>
         </div>
 
     </main>
 
-    <!-- JAVASCRIPT FOR FIXED HEADER, THEME PERSISTENCE & RENDERING -->
+    <!-- JAVASCRIPT FOR SESSION ACTIVITY PERSISTENCE, THEME & RENDERING -->
     <script>
         let currentMode = 'docs'; // 'docs' or 'code'
         let activeDocPath = 'ROADMAP.md';
         let activeCodePath = 'README.md';
+        let activeDocTitle = '1. Complete Learning Path';
         let rawContentText = '';
 
         // ---------------------------------------------------------
-        // THEME MANAGEMENT WITH SESSION PERSISTENCE (DEFAULT: LIGHT)
+        // 1. THEME MANAGEMENT WITH SESSION PERSISTENCE (DEFAULT: LIGHT)
         // ---------------------------------------------------------
         function initTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light';
@@ -368,6 +369,41 @@
                 mermaid.initialize({ startOnLoad: false, theme: 'default' });
             }
             if (rawContentText) renderCurrentView();
+        }
+
+        // ---------------------------------------------------------
+        // 2. LAST LESSON SESSION ACTIVITY PERSISTENCE
+        // ---------------------------------------------------------
+        function initLessonSession() {
+            const savedDocPath = localStorage.getItem('activeDocPath');
+            const savedCodePath = localStorage.getItem('activeCodePath');
+            const savedDocTitle = localStorage.getItem('activeDocTitle');
+            const savedMode = localStorage.getItem('activeViewMode');
+
+            if (savedDocPath) activeDocPath = savedDocPath;
+            if (savedCodePath) activeCodePath = savedCodePath;
+            if (savedDocTitle) activeDocTitle = savedDocTitle;
+            if (savedMode) currentMode = savedMode;
+
+            document.getElementById('currentDocTitle').textContent = activeDocTitle;
+            document.getElementById('btnDocsTab').classList.toggle('active', currentMode === 'docs');
+            document.getElementById('btnCodeTab').classList.toggle('active', currentMode === 'code');
+
+            // Highlight corresponding sidebar link
+            const links = document.querySelectorAll('#navList a.sidebar-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-path') === activeDocPath) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        function saveLessonSession() {
+            localStorage.setItem('activeDocPath', activeDocPath);
+            localStorage.setItem('activeCodePath', activeCodePath);
+            localStorage.setItem('activeDocTitle', activeDocTitle);
+            localStorage.setItem('activeViewMode', currentMode);
         }
 
         function filterDocs() {
@@ -438,6 +474,7 @@
             currentMode = mode;
             document.getElementById('btnDocsTab').classList.toggle('active', mode === 'docs');
             document.getElementById('btnCodeTab').classList.toggle('active', mode === 'code');
+            saveLessonSession();
             renderCurrentView();
         }
 
@@ -458,6 +495,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initTheme();
+            initLessonSession();
 
             const links = document.querySelectorAll('#navList a.sidebar-link');
             links.forEach(link => {
@@ -467,9 +505,10 @@
                     
                     activeDocPath = link.getAttribute('data-path') || 'ROADMAP.md';
                     activeCodePath = link.getAttribute('data-code') || 'main.go';
-                    const title = link.textContent.trim();
-                    document.getElementById('currentDocTitle').textContent = title;
+                    activeDocTitle = link.textContent.trim();
+                    document.getElementById('currentDocTitle').textContent = activeDocTitle;
                     
+                    saveLessonSession();
                     renderCurrentView();
                 });
             });
