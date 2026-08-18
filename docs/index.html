@@ -164,20 +164,16 @@
         html.dark .markdown-body code { background-color: rgba(110, 118, 129, 0.2); color: #58a6ff; }
         html.dark .markdown-body pre { background-color: #0d1117 !important; border-color: #30363d !important; color: #c9d1d9 !important; }
 
-        /* Custom Scrollbar */
+        /* HIDE ALL VISIBLE SCROLLBARS / DRAG BARS FOR CLEAN DESIGN */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            display: none !important;
+            width: 0px !important;
+            height: 0px !important;
         }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d0d7de;
-            border-radius: 4px;
-        }
-        html.dark ::-webkit-scrollbar-thumb {
-            background: #30363d;
+
+        * {
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
         }
     </style>
 </head>
@@ -315,7 +311,7 @@
 
             <!-- FOOTER SECTION -->
             <footer class="text-center text-xs text-gray-500 dark:text-gray-400 pt-8 pb-12">
-                <p>Ultimate Go (Golang) Programming Master Course Documentation — Auto-Scroll Active Menu Item into View</p>
+                <p>Ultimate Go (Golang) Programming Master Course Documentation — Uncluttered Clean Scroll Interface</p>
             </footer>
         </div>
 
