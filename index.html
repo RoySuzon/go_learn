@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Go (Golang) Dynamic Markdown Docs</title>
+    <title>Ultimate Go (Golang) Docs & Live Code Viewer</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Highlight.js CDN for Go Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/go.min.js"></script>
     <!-- Marked.js for dynamic Markdown rendering -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -32,7 +36,6 @@
             border: 1px solid rgba(48, 54, 61, 0.7);
         }
 
-        /* Sidebar active link indicator styling */
         .sidebar-link {
             transition: all 0.2s ease-in-out;
             border-left: 3px solid transparent;
@@ -50,6 +53,11 @@
             border-left-color: #58a6ff !important;
             font-weight: 600 !important;
             box-shadow: inset 3px 0 0 0 #58a6ff;
+        }
+
+        .tab-button.active {
+            background-color: #1f6feb;
+            color: #ffffff;
         }
 
         /* Dynamic Markdown Output Styling */
@@ -107,13 +115,13 @@
             </div>
         </div>
 
-        <!-- Navigation Menu with Data-Path attributes -->
+        <!-- Navigation Menu with Data Attributes for Docs & Code -->
         <nav class="flex-1 overflow-y-auto p-3 space-y-6 text-sm" id="navList">
             <!-- Roadmap -->
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🗺️ Hierarchy Roadmap</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#roadmap" data-path="ROADMAP.md" class="sidebar-link active block px-3 py-2 rounded-r-md">1. Complete Learning Path</a>
+                    <a href="#roadmap" data-path="ROADMAP.md" data-code="README.md" class="sidebar-link active block px-3 py-2 rounded-r-md">1. Complete Learning Path</a>
                 </div>
             </div>
 
@@ -121,16 +129,16 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🟢 Core Lessons (1 - 10)</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#lesson01" data-path="lesson01/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">01. Hello World & Structure</a>
-                    <a href="#lesson02" data-path="lesson02/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">02. Variables & Data Types</a>
-                    <a href="#lesson03" data-path="lesson03/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">03. Control Flow (if/switch/for)</a>
-                    <a href="#lesson04" data-path="lesson04/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">04. Functions & Error Handling</a>
-                    <a href="#lesson05" data-path="lesson05/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">05. Data Structures (Slices/Maps)</a>
-                    <a href="#lesson06" data-path="lesson06/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">06. Pointers & Memory</a>
-                    <a href="#lesson07" data-path="lesson07/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">07. Methods & Interfaces</a>
-                    <a href="#lesson08" data-path="lesson08/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">08. Concurrency & Channels</a>
-                    <a href="#lesson09" data-path="lesson09/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">09. Modules & Stdlib</a>
-                    <a href="#lesson10" data-path="lesson10/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">10. Unit Testing & Benchmarks</a>
+                    <a href="#lesson01" data-path="lesson01/README.md" data-code="lesson01/01_introduction.go" class="sidebar-link block px-3 py-2 rounded-r-md">01. Hello World & Structure</a>
+                    <a href="#lesson02" data-path="lesson02/README.md" data-code="lesson02/02_variables_types.go" class="sidebar-link block px-3 py-2 rounded-r-md">02. Variables & Data Types</a>
+                    <a href="#lesson03" data-path="lesson03/README.md" data-code="lesson03/03_control_flow.go" class="sidebar-link block px-3 py-2 rounded-r-md">03. Control Flow (if/switch/for)</a>
+                    <a href="#lesson04" data-path="lesson04/README.md" data-code="lesson04/04_functions_errors.go" class="sidebar-link block px-3 py-2 rounded-r-md">04. Functions & Error Handling</a>
+                    <a href="#lesson05" data-path="lesson05/README.md" data-code="lesson05/05_data_structures.go" class="sidebar-link block px-3 py-2 rounded-r-md">05. Data Structures (Slices/Maps)</a>
+                    <a href="#lesson06" data-path="lesson06/README.md" data-code="lesson06/06_pointers.go" class="sidebar-link block px-3 py-2 rounded-r-md">06. Pointers & Memory</a>
+                    <a href="#lesson07" data-path="lesson07/README.md" data-code="lesson07/07_methods_interfaces.go" class="sidebar-link block px-3 py-2 rounded-r-md">07. Methods & Interfaces</a>
+                    <a href="#lesson08" data-path="lesson08/README.md" data-code="lesson08/08_concurrency.go" class="sidebar-link block px-3 py-2 rounded-r-md">08. Concurrency & Channels</a>
+                    <a href="#lesson09" data-path="lesson09/README.md" data-code="lesson09/09_modules_stdlib.go" class="sidebar-link block px-3 py-2 rounded-r-md">09. Modules & Stdlib</a>
+                    <a href="#lesson10" data-path="lesson10/README.md" data-code="lesson10/10_unit_testing_test.go" class="sidebar-link block px-3 py-2 rounded-r-md">10. Unit Testing & Benchmarks</a>
                 </div>
             </div>
 
@@ -138,12 +146,12 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🧠 DSA & HackerRank</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#dsa-01" data-path="dsa/01_linked_list/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">DSA 01. Singly Linked List</a>
-                    <a href="#dsa-02" data-path="dsa/02_stack_queue/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">DSA 02. Stack & Queue</a>
-                    <a href="#dsa-03" data-path="dsa/03_binary_tree/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">DSA 03. Binary Search Tree</a>
-                    <a href="#dsa-04" data-path="dsa/04_searching_sorting/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">DSA 04. Searching & Sorting</a>
-                    <a href="#dsa-05" data-path="dsa/05_advanced_dsa/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">DSA 05. Advanced Trie & Heap</a>
-                    <a href="#hackerrank" data-path="dsa/hackerrank/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">HackerRank 6 Top Patterns</a>
+                    <a href="#dsa-01" data-path="dsa/01_linked_list/README.md" data-code="dsa/01_linked_list/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">DSA 01. Singly Linked List</a>
+                    <a href="#dsa-02" data-path="dsa/02_stack_queue/README.md" data-code="dsa/02_stack_queue/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">DSA 02. Stack & Queue</a>
+                    <a href="#dsa-03" data-path="dsa/03_binary_tree/README.md" data-code="dsa/03_binary_tree/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">DSA 03. Binary Search Tree</a>
+                    <a href="#dsa-04" data-path="dsa/04_searching_sorting/README.md" data-code="dsa/04_searching_sorting/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">DSA 04. Searching & Sorting</a>
+                    <a href="#dsa-05" data-path="dsa/05_advanced_dsa/README.md" data-code="dsa/05_advanced_dsa/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">DSA 05. Advanced Trie & Heap</a>
+                    <a href="#hackerrank" data-path="dsa/hackerrank/README.md" data-code="dsa/hackerrank/01_two_sum/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">HackerRank 6 Top Patterns</a>
                 </div>
             </div>
 
@@ -151,15 +159,15 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🏗️ Systems Engineering Projects</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#proj-rest" data-path="projects/01_rest_api/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 01: REST API (JWT + Postgres)</a>
-                    <a href="#proj-cli" data-path="projects/02_cli_todo/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 02: CLI Todo Manager</a>
-                    <a href="#proj-grpc" data-path="projects/03_grpc_service/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 03: gRPC Microservice</a>
-                    <a href="#proj-redis" data-path="projects/04_redis_cache/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 04: Redis Caching (Cache-Aside)</a>
-                    <a href="#proj-queue" data-path="projects/05_event_queue/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 05: Event Queue & Worker Pool</a>
-                    <a href="#proj-db" data-path="projects/06_database_advanced/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 06: Advanced SQL & Connection Pool</a>
-                    <a href="#proj-sysdesign" data-path="projects/07_system_design/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 07: System Design (Rate Limiter & CB)</a>
-                    <a href="#proj-obs" data-path="projects/08_observability/README.md" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 08: Observability (slog & Prometheus)</a>
-                    <a href="#sys-arch" data-path="docs/system_architecture_bangla.md" class="sidebar-link block px-3 py-2 rounded-r-md">Senior Architecture Guide</a>
+                    <a href="#proj-rest" data-path="projects/01_rest_api/README.md" data-code="projects/01_rest_api/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 01: REST API (JWT + Postgres)</a>
+                    <a href="#proj-cli" data-path="projects/02_cli_todo/README.md" data-code="projects/02_cli_todo/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 02: CLI Todo Manager</a>
+                    <a href="#proj-grpc" data-path="projects/03_grpc_service/README.md" data-code="projects/03_grpc_service/server/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 03: gRPC Microservice</a>
+                    <a href="#proj-redis" data-path="projects/04_redis_cache/README.md" data-code="projects/04_redis_cache/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 04: Redis Caching (Cache-Aside)</a>
+                    <a href="#proj-queue" data-path="projects/05_event_queue/README.md" data-code="projects/05_event_queue/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 05: Event Queue & Worker Pool</a>
+                    <a href="#proj-db" data-path="projects/06_database_advanced/README.md" data-code="projects/06_database_advanced/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 06: Advanced SQL & Connection Pool</a>
+                    <a href="#proj-sysdesign" data-path="projects/07_system_design/README.md" data-code="projects/07_system_design/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 07: System Design (Rate Limiter & CB)</a>
+                    <a href="#proj-obs" data-path="projects/08_observability/README.md" data-code="projects/08_observability/main.go" class="sidebar-link block px-3 py-2 rounded-r-md">Proj 08: Observability (slog & Prometheus)</a>
+                    <a href="#sys-arch" data-path="docs/system_architecture_bangla.md" data-code="projects/01_rest_api/database.go" class="sidebar-link block px-3 py-2 rounded-r-md">Senior Architecture Guide</a>
                 </div>
             </div>
         </nav>
@@ -176,35 +184,48 @@
     <!-- MAIN CONTENT AREA -->
     <main class="flex-1 overflow-y-auto p-8 space-y-8" id="mainContent">
 
-        <!-- DYNAMIC HEADER BANNER -->
+        <!-- DYNAMIC HEADER BANNER WITH DOCS / CODE TOGGLE TABS -->
         <div class="glass-card p-6 rounded-xl border border-[#30363d] flex justify-between items-center">
             <div>
                 <span id="currentDocPath" class="text-xs font-mono text-[#58a6ff] bg-[#1f6feb22] px-3 py-1 rounded-full border border-[#1f6feb44]">ROADMAP.md</span>
                 <h1 id="currentDocTitle" class="text-2xl font-bold text-white mt-2">1. Complete Learning Path</h1>
             </div>
-            <button onclick="reloadMarkdown()" class="text-xs bg-[#21262d] hover:bg-[#30363d] text-gray-300 px-4 py-2 rounded-lg border border-[#30363d] transition flex items-center gap-2">
-                <i class="fa-solid fa-rotate-right"></i> Reload Markdown
-            </button>
+            
+            <!-- DOCS VS CODE TOGGLE TABS -->
+            <div class="flex items-center space-x-2 bg-[#0d1117] p-1.5 rounded-lg border border-[#30363d]">
+                <button id="btnDocsTab" onclick="switchViewMode('docs')" class="tab-button active text-xs font-semibold px-4 py-2 rounded-md transition flex items-center gap-2">
+                    <i class="fa-regular fa-file-lines"></i> 📖 Docs View
+                </button>
+                <button id="btnCodeTab" onclick="switchViewMode('code')" class="tab-button text-xs font-semibold text-gray-400 hover:text-white px-4 py-2 rounded-md transition flex items-center gap-2">
+                    <i class="fa-solid fa-code"></i> 💻 Code View
+                </button>
+                <button onclick="copyCurrentContent()" title="Copy Code/Text" class="text-xs bg-[#21262d] hover:bg-[#30363d] text-gray-300 p-2 rounded-md border border-[#30363d] transition">
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+            </div>
         </div>
 
-        <!-- DYNAMIC MARKDOWN DISPLAY CONTAINER -->
-        <div class="glass-card p-8 rounded-xl border border-[#30363d] markdown-body" id="markdownViewer">
+        <!-- DYNAMIC DISPLAY CONTAINER -->
+        <div class="glass-card p-8 rounded-xl border border-[#30363d] markdown-body" id="contentViewer">
             <div class="flex items-center justify-center p-12">
                 <i class="fa-solid fa-circle-notch fa-spin text-3xl text-[#58a6ff]"></i>
-                <span class="ml-3 text-sm text-gray-400">Loading documentation from repository...</span>
+                <span class="ml-3 text-sm text-gray-400">Loading contents...</span>
             </div>
         </div>
 
         <!-- FOOTER SECTION -->
         <footer class="text-center text-xs text-gray-500 border-t border-[#30363d] pt-6 pb-12">
-            <p>Ultimate Go (Golang) Programming Master Course Documentation — Dynamically Rendered from Repo Markdown Files</p>
+            <p>Ultimate Go (Golang) Programming Master Course Documentation — Dynamically Rendered with Docs & Code View</p>
         </footer>
 
     </main>
 
-    <!-- DYNAMIC MARKDOWN FETCHING & RENDERING JAVASCRIPT -->
+    <!-- JAVASCRIPT FOR DOCS VS CODE TOGGLE & FETCHING -->
     <script>
+        let currentMode = 'docs'; // 'docs' or 'code'
         let activeDocPath = 'ROADMAP.md';
+        let activeCodePath = 'README.md';
+        let rawContentText = '';
 
         function filterDocs() {
             const query = document.getElementById('searchInput').value.toLowerCase();
@@ -220,40 +241,71 @@
             });
         }
 
-        async function loadMarkdownFile(path, title) {
-            activeDocPath = path;
-            const viewer = document.getElementById('markdownViewer');
+        async function renderCurrentView() {
+            const viewer = document.getElementById('contentViewer');
             const pathBadge = document.getElementById('currentDocPath');
-            const titleHeader = document.getElementById('currentDocTitle');
+            const targetPath = (currentMode === 'docs') ? activeDocPath : activeCodePath;
 
-            pathBadge.textContent = path;
-            if (title) titleHeader.textContent = title;
-
+            pathBadge.textContent = targetPath;
             viewer.innerHTML = `
                 <div class="flex items-center justify-center p-12">
                     <i class="fa-solid fa-circle-notch fa-spin text-3xl text-[#58a6ff]"></i>
-                    <span class="ml-3 text-sm text-gray-400">Loading ${path}...</span>
+                    <span class="ml-3 text-sm text-gray-400">Loading ${targetPath}...</span>
                 </div>`;
 
             try {
-                const response = await fetch(path);
+                let response = await fetch(targetPath);
                 if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
 
-                const markdownText = await response.text();
-                viewer.innerHTML = marked.parse(markdownText);
+                rawContentText = await response.text();
+
+                if (currentMode === 'docs') {
+                    viewer.innerHTML = marked.parse(rawContentText);
+                } else {
+                    // Code View with Highlight.js
+                    viewer.innerHTML = `
+                        <div class="relative">
+                            <div class="text-xs text-gray-400 font-mono mb-2 flex justify-between items-center">
+                                <span>📄 File: <strong>${targetPath}</strong></span>
+                                <button onclick="copyCurrentContent()" class="text-xs bg-[#1f6feb22] text-[#58a6ff] border border-[#1f6feb44] px-3 py-1 rounded hover:bg-[#1f6feb44] transition">
+                                    <i class="fa-regular fa-copy mr-1"></i> Copy Go Code
+                                </button>
+                            </div>
+                            <pre><code class="language-go">${escapeHtml(rawContentText)}</code></pre>
+                        </div>`;
+                    hljs.highlightAll();
+                }
                 document.getElementById('mainContent').scrollTop = 0;
             } catch (err) {
                 viewer.innerHTML = `
                     <div class="p-6 bg-red-900/20 border border-red-500/50 rounded-xl text-red-300 text-sm">
                         <i class="fa-solid fa-triangle-exclamation text-lg mr-2"></i>
-                        <strong>Failed to load Markdown file:</strong> <code>${path}</code> (${err.message})
+                        <strong>Failed to load file:</strong> <code>${targetPath}</code> (${err.message})
                         <p class="text-xs text-gray-400 mt-2">Note: Dynamic fetching works when served via local server (go run docs_server.go) or GitHub Pages.</p>
                     </div>`;
             }
         }
 
-        function reloadMarkdown() {
-            loadMarkdownFile(activeDocPath);
+        function switchViewMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnDocsTab').classList.toggle('active', mode === 'docs');
+            document.getElementById('btnCodeTab').classList.toggle('active', mode === 'code');
+            renderCurrentView();
+        }
+
+        function copyCurrentContent() {
+            navigator.clipboard.writeText(rawContentText).then(() => {
+                alert("✅ Content copied to clipboard!");
+            });
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -264,16 +316,17 @@
                     links.forEach(l => l.classList.remove('active'));
                     link.classList.add('active');
                     
-                    const path = link.getAttribute('data-path');
+                    activeDocPath = link.getAttribute('data-path') || 'ROADMAP.md';
+                    activeCodePath = link.getAttribute('data-code') || 'main.go';
                     const title = link.textContent.trim();
-                    if (path) {
-                        loadMarkdownFile(path, title);
-                    }
+                    document.getElementById('currentDocTitle').textContent = title;
+                    
+                    renderCurrentView();
                 });
             });
 
-            // Initial load ROADMAP.md
-            loadMarkdownFile('ROADMAP.md', '1. Complete Learning Path');
+            // Initial render
+            renderCurrentView();
         });
     </script>
 </body>
