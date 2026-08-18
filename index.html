@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Go (Golang) Master Course & Systems Engineering Docs</title>
+    <title>Ultimate Go (Golang) Complete Course & Systems Engineering Docs</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -104,7 +104,7 @@
             <div>
                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🧠 DSA & HackerRank</span>
                 <div class="mt-2 space-y-1">
-                    <a href="#dsa-core" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Core Data Structures</a>
+                    <a href="#dsa-core" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Core DSA (Linked List, BST)</a>
                     <a href="#dsa-advanced" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Advanced DSA (Trie, Heap, Graph)</a>
                     <a href="#hackerrank" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">HackerRank 6 Top Patterns</a>
                 </div>
@@ -141,12 +141,12 @@
         <!-- HEADER BANNER -->
         <div class="glass-card p-8 rounded-2xl border border-[#30363d] bg-gradient-to-r from-[#161b22] to-[#0d1117]">
             <div class="flex items-center space-x-3 mb-3">
-                <span class="bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/30 text-xs px-3 py-1 rounded-full font-semibold">Complete Master Guide</span>
+                <span class="bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/30 text-xs px-3 py-1 rounded-full font-semibold">Complete Master Documentation</span>
                 <span class="bg-green-500/10 text-green-400 border border-green-500/30 text-xs px-3 py-1 rounded-full font-semibold">Go 1.26+ Ready</span>
             </div>
             <h1 class="text-3xl font-extrabold text-white mb-2">Ultimate Go (Golang) Programming & Systems Engineering Docs</h1>
             <p class="text-gray-300 text-sm max-w-3xl leading-relaxed">
-                জিরো থেকে শুরু করে সিনিয়র গো সফটওয়্যার ইঞ্জিনিয়ার হওয়ার জন্য সম্পূর্ণ গাইডে স্বাগতম! এখানে Go কোর সিনট্যাক্স, কনকারেন্সি, ইউনিট টেস্টিং, DSA, HackerRank সলিউশন, মাইক্রোসার্ভিস, এবং ডিস্ট্রিবিউটেড সিস্টেম আর্কিটেকচার বাংলায় সচিত্র ব্যাখ্যা করা হয়েছে।
+                জিরো থেকে শুরু করে সিনিয়র গো সফটওয়্যার ইঞ্জিনিয়ার হওয়ার জন্য সম্পূর্ণ গাইডে স্বাগতম! এখানে Go কোর সিনট্যাক্স (১ - ১০), কনকারেন্সি, ইউনিট টেস্টিং, DSA, HackerRank সলিউশন, ৮টি রিয়াল-ওয়ার্ল্ড প্রজেক্ট, এবং ডিস্ট্রিবিউটেড সিস্টেম আর্কিটেকচার বাংলায় সচিত্র ব্যাখ্যা করা হয়েছে।
             </p>
         </div>
 
@@ -181,7 +181,7 @@
             </div>
         </section>
 
-        <!-- SECTION: CORE LESSONS -->
+        <!-- LESSON 01 -->
         <section id="lesson01" class="space-y-4 border-t border-[#30363d] pt-8">
             <div class="flex justify-between items-center">
                 <h2 class="text-xl font-bold text-white">Lesson 01: Hello World & Structure (সূচনা ও প্রোগ্রামের গঠন)</h2>
@@ -189,7 +189,7 @@
             </div>
             <div class="glass-card p-5 rounded-xl space-y-3">
                 <p class="text-sm text-gray-300">
-                    <strong>ব্যাখ্যা:</strong> প্রতিটি রানঅ্যাবল Go প্রোগ্রাম <code>package main</code> দিয়ে শুরু হতে হয়। <code>import "fmt"</code> দিয়ে ইনপুট-আউটপুট প্যাকেজ সংযুক্ত করা হয় এবং <code>func main()</code> হলো প্রোগ্রামের মূল এন্ট্রি পয়েন্ট।
+                    <strong>ব্যাখ্যা:</strong> প্রতিটি এক্সিকিউটেবল Go প্রোগ্রাম <code>package main</code> দিয়ে শুরু হতে হয়। <code>import "fmt"</code> ইনপুট/আউটপুটের জন্য ব্যবহৃত হয় এবং <code>func main()</code> হলো প্রোগ্রামের মূল এন্ট্রি পয়েন্ট।
                 </p>
                 <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
                     <pre class="text-xs text-[#58a6ff]"><code>package main
@@ -203,7 +203,135 @@ func main() {
             </div>
         </section>
 
-        <!-- SECTION: CONCURRENCY -->
+        <!-- LESSON 02 -->
+        <section id="lesson02" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Lesson 02: Variables, Constants & Data Types (ভ্যারিয়েবল ও টাইপ)</h2>
+                <span class="text-xs text-gray-400">lesson02/02_variables_types.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-3">
+                <p class="text-sm text-gray-300">
+                    <strong>ব্যাখ্যা:</strong> Go-তে ভ্যারিয়েবল ডিক্লেয়ারেশনের ৩টি নিয়ম রয়েছে (Explicit, Infer, `:=`)। কোনো মান না দিলে ডিফল্ট <strong>Zero Value</strong> (0, 0.0, false, "") অ্যাসাইন হয়। <code>iota</code> ক্রমানুসারে কনস্ট্যান্ট উৎপন্ন করে।
+                </p>
+                <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
+                    <pre class="text-xs text-[#58a6ff]"><code>var name string = "Goutom"
+age := 26
+
+const (
+    Pending = iota // 0
+    Approved       // 1
+)</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- LESSON 03 -->
+        <section id="lesson03" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Lesson 03: Control Flow (কন্ট্রোল ফ্লো: `if`, `switch`, `for`)</h2>
+                <span class="text-xs text-gray-400">lesson03/03_control_flow.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-3">
+                <p class="text-sm text-gray-300">
+                    <strong>ব্যাখ্যা:</strong> <code>if</code> স্টেটমেন্টের সাথে শর্ট ভ্যারিয়েবল ডিক্লেয়ার করা যায়। <code>switch</code> কেসের শেষে স্বয়ংক্রিয়ভাবে <code>break</code> হয়। Go-তে একমাত্র লুপ হলো <code>for</code>।
+                </p>
+                <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
+                    <pre class="text-xs text-[#58a6ff]"><code>if limit := 100; score < limit {
+    fmt.Println("Valid score")
+}
+
+for i := 1; i <= 3; i++ {
+    fmt.Println(i)
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- LESSON 04 -->
+        <section id="lesson04" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Lesson 04: Functions & Error Handling (ফাংশন ও এরর হ্যান্ডলিং)</h2>
+                <span class="text-xs text-gray-400">lesson04/04_functions_errors.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-3">
+                <p class="text-sm text-gray-300">
+                    <strong>ব্যাখ্যা:</strong> Go ফাংশন থেকে একাধিক মান <code>(result, error)</code> রিটার্ন করা যায়। <code>defer</code> ফাংশন শেষে স্থগিত কাজ সম্পন্ন করে (LIFO), আর <code>panic</code> এবং <code>recover</code> প্রোগ্রাম ক্র্যাশ হ্যান্ডেল করে।
+                </p>
+                <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
+                    <pre class="text-xs text-[#58a6ff]"><code>func divide(a, b float64) (float64, error) {
+    if b == 0 {
+        return 0, errors.New("cannot divide by zero")
+    }
+    return a / b, nil
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- LESSON 05 -->
+        <section id="lesson05" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Lesson 05: Data Structures (অ্যারে, স্লাইস, ম্যাপ ও স্ট্রাক্ট)</h2>
+                <span class="text-xs text-gray-400">lesson05/05_data_structures.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-3">
+                <p class="text-sm text-gray-300">
+                    <strong>ব্যাখ্যা:</strong> স্লাইস হলো ডায়নামিক আকারের অ্যারে ভিউ (`append()`, `make()`)। ম্যাপ হলো কী-ভ্যালু হ্যাশ টেবিল। গো-তে ক্লাসের বদলে **Struct Embedding (Composition)** ব্যবহৃত হয়।
+                </p>
+                <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
+                    <pre class="text-xs text-[#58a6ff]"><code>type User struct {
+    ID   int
+    Name string
+}
+
+languages := []string{"Go", "Python"}
+languages = append(languages, "Rust")</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- LESSON 06 -->
+        <section id="lesson06" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Lesson 06: Pointers & Memory (পয়েন্টার ও মেমোরি)</h2>
+                <span class="text-xs text-gray-400">lesson06/06_pointers.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-3">
+                <p class="text-sm text-gray-300">
+                    <strong>ব্যাখ্যা:</strong> <code>&</code> দিয়ে মেমোরি ঠিকানা পাওয়া যায় এবং <code>*</code> দিয়ে পয়েন্টার ডিরেক্ট করা যায়। Go সম্পূর্ণভাবে **Pass-by-Value** মেনে চলে; তাই মূল ভ্যারিয়েবল পরিবর্তন করতে পয়েন্টার পাঠাতে হয়।
+                </p>
+                <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
+                    <pre class="text-xs text-[#58a6ff]"><code>val := 42
+ptr := &val
+
+*ptr = 100 // Modifies original val directly</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- LESSON 07 -->
+        <section id="lesson07" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Lesson 07: Methods & Interfaces (মেথড ও ইন্টারফেস)</h2>
+                <span class="text-xs text-gray-400">lesson07/07_methods_interfaces.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-3">
+                <p class="text-sm text-gray-300">
+                    <strong>ব্যাখ্যা:</strong> Value Receiver মূল অবজেক্ট কাস্ট করে না, তবে Pointer Receiver রিড/রাইট কাস্ট করতে পারে। `implements` ছাড়াই Go-তে টাইপসমূহ **Implicitly Interface** বাস্তবায়ন করে।
+                </p>
+                <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
+                    <pre class="text-xs text-[#58a6ff]"><code>type Shape interface {
+    Area() float64
+}
+
+func (c Circle) Area() float64 {
+    return math.Pi * c.Radius * c.Radius
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- LESSON 08 -->
         <section id="lesson08" class="space-y-4 border-t border-[#30363d] pt-8">
             <div class="flex justify-between items-center">
                 <h2 class="text-xl font-bold text-white">Lesson 08: Concurrency, Goroutines & Channels (কনকারেন্সি)</h2>
@@ -211,7 +339,7 @@ func main() {
             </div>
             <div class="glass-card p-5 rounded-xl space-y-3">
                 <p class="text-sm text-gray-300">
-                    <strong>ব্যাখ্যা:</strong> <code>go</code> কিওয়ার্ড দিয়ে খুব লাইটওয়েট থ্রেড (Goroutine - ~2KB) চালু করা যায়। চ্যানেলের মাধ্যমে থ্রেডগুলোর মধ্যে তথ্য আদান-প্রদান করা হয়। <code>sync.Mutex</code> রেস কন্ডিশন প্রতিরোধ করে।
+                    <strong>ব্যাখ্যা:</strong> <code>go</code> কিওয়ার্ড দিয়ে খুব লাইটওয়েট থ্রেড (Goroutine - ~2KB) চালু করা যায়। চ্যানেলের মাধ্যমে থ্রেডগুলোর মধ্যে তথ্য আদান-প্রদান করা হয়। <code>sync.Mutex</code> রেস কন্ডিশন প্রতিরোধ করে।
                 </p>
                 <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
                     <pre class="text-xs text-[#58a6ff]"><code>ch := make(chan string)
@@ -222,6 +350,44 @@ go func() {
 
 msg := <-ch
 fmt.Println(msg)</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- LESSON 09 -->
+        <section id="lesson09" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Lesson 09: Modules & Standard Library (মডিউল ও স্ট্যান্ডার্ড লাইব্রেরি)</h2>
+                <span class="text-xs text-gray-400">lesson09/09_modules_stdlib.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-3">
+                <p class="text-sm text-gray-300">
+                    <strong>ব্যাখ্যা:</strong> `Capitalized` আদ্যক্ষরের নাম হলো Public/Exported, এবং `lowercase` হলো Private। গুরুত্বপূর্ণ স্ট্যান্ডার্ড প্যাকেজ: `strings`, `strconv`, `time`, `os`।
+                </p>
+                <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
+                    <pre class="text-xs text-[#58a6ff]"><code>trimmed := strings.TrimSpace("  Go  ")
+num, _ := strconv.Atoi("100")
+now := time.Now().Format("2006-01-02 15:04:05")</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- LESSON 10 -->
+        <section id="lesson10" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Lesson 10: Unit Testing & Benchmarking (ইউনিট টেস্ট ও বেঞ্চমার্ক)</h2>
+                <span class="text-xs text-gray-400">lesson10/10_unit_testing_test.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-3">
+                <p class="text-sm text-gray-300">
+                    <strong>ব্যাখ্যা:</strong> Go-এর নিজস্ব `testing` প্যাকেজ ব্যবহার করে `testing.T` দিয়ে স্বয়ংক্রিয় টেস্ট, Table-Driven Tests, এবং `testing.B` দিয়ে পারফরম্যান্সের বেঞ্চমার্ক মাপা হয়।
+                </p>
+                <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
+                    <pre class="text-xs text-[#58a6ff]"><code>func TestAdd(t *testing.T) {
+    if got := Add(10, 20); got != 30 {
+        t.Errorf("Add(10, 20) = %d; want 30", got)
+    }
+}</code></pre>
                 </div>
             </div>
         </section>
