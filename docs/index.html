@@ -273,7 +273,7 @@
         </div>
     </aside>
 
-    <!-- MAIN CONTENT AREA WITH FIXED STICKY HEADER -->
+    <!-- MAIN CONTENT AREA WITH FIXED STICKY HEADER & FULL WIDTH VIEWER -->
     <main class="flex-1 flex flex-col h-full overflow-hidden" id="mainContent">
 
         <!-- 📌 PERMANENTLY FIXED TOP HEADER BAR -->
@@ -304,9 +304,9 @@
             </div>
         </header>
 
-        <!-- 📜 SCROLLABLE DOCUMENTATION & CODE CONTAINER ONLY -->
-        <div class="flex-1 overflow-y-auto p-8" id="scrollContainer">
-            <div class="glass-card p-8 rounded-xl border markdown-body max-w-6xl mx-auto" id="contentViewer">
+        <!-- 📜 FULL WIDTH SCROLLABLE DOCUMENTATION & CODE CONTAINER -->
+        <div class="flex-1 overflow-y-auto p-6" id="scrollContainer">
+            <div class="glass-card p-8 rounded-xl border markdown-body w-full" id="contentViewer">
                 <div class="flex items-center justify-center p-12">
                     <i class="fa-solid fa-circle-notch fa-spin text-3xl text-[#0969da] dark:text-[#58a6ff]"></i>
                     <span class="ml-3 text-sm text-gray-500 dark:text-gray-400">Loading contents...</span>
@@ -315,7 +315,7 @@
 
             <!-- FOOTER SECTION -->
             <footer class="text-center text-xs text-gray-500 dark:text-gray-400 pt-8 pb-12">
-                <p>Ultimate Go (Golang) Programming Master Course Documentation — Fixed Header Bar with Light Mode Default</p>
+                <p>Ultimate Go (Golang) Programming Master Course Documentation — Full Width View Enabled</p>
             </footer>
         </div>
 
