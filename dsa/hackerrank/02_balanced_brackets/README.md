@@ -1,42 +1,43 @@
 # 02. Balanced Brackets (বন্ধনী সমতা পরীক্ষা)
 
-## 📝 সমস্যা বর্ণনা (Problem Statement)
-একটি ব্র্যাকেট স্ট্রিং দেওয়া আছে যেমন: `{[()]}` বা `{[(])}`।
-ব্র্যাকেটগুলো সঠিকভাবে ওপেন এবং ক্লোজ করা হয়েছে কিনা তা পরীক্ষা করতে হবে।
+## 📝 Problem Statement (সমস্যা বর্ণনা)
+Given a string containing brackets `'()'`, `'{}'`, `'[]'`, determine if the input string is valid/balanced.  
+(একটি ব্র্যাকেট স্ট্রিং দেওয়া আছে যেমন `{[()]}` বা `{[(])}`। ব্র্যাকেটগুলো সঠিকভাবে ওপেন এবং ক্লোজ করা হয়েছে কিনা তা পরীক্ষা করতে হবে।)
 
 ---
 
-## 🧠 সমাধান যুক্তি (How it Works - Stack Pattern)
-**স্ট্যাক (Stack)** হলো **Last-In, First-Out (LIFO)** ডেটা স্ট্রাকচার।
+## 🧠 Algorithm & Intuition (সমাধান যুক্তি - Stack Pattern)
+A **Stack** is a **Last-In, First-Out (LIFO)** data structure.
 
-1. ওপেনিং ব্র্যাকেট (`(`, `{`, `[`) পেলে স্ট্যাকে **Push** করি।
-2. ক্লোজিং ব্র্যাকেট (`)`, `}`, `]`) পেলে স্ট্যাকের শীর্ষ উপাদানটি **Pop** করে মিলিয়ে দেখি।
-3. যদি ম্যাচ না করে, অথবা স্ট্যাক আগে থেকেই খালি থাকে, তবে এটি সঠিক নয় (`false`)।
-4. লুপের শেষে স্ট্যাক খালি থাকলে ব্র্যাকেটগুলো সমতায় রয়েছে (`true`)।
+1. Iterate through each character in string `s`.
+2. If it is an **Opening Bracket** (`'('`, `'{'`, `'['`) -> **Push** onto Stack.
+3. If it is a **Closing Bracket** (`')'`, `'}'`, `']'`) -> **Pop** top element from Stack and check for match.
+   - If Stack is empty or top does not match -> Return `false`.
+4. After loop, if Stack is empty -> String is **Balanced (`true`)**!
 
 ---
 
-## 🎨 ডায়াগ্রাম (Diagram Trace)
+## 🎨 Diagram & Trace
 ```text
 String: "{ [ ( ) ] }"
 
-1. '{' -> Stack: ['{']
-2. '[' -> Stack: ['{', '[']
-3. '(' -> Stack: ['{', '[', '(']
-4. ')' -> Pops '(' -> Matches! Stack: ['{', '[']
-5. ']' -> Pops '[' -> Matches! Stack: ['{']
-6. '}' -> Pops '{' -> Matches! Stack: [] (Empty -> Balanced! ✅)
+1. '{' -> Push -> Stack: ['{']
+2. '[' -> Push -> Stack: ['{', '[']
+3. '(' -> Push -> Stack: ['{', '[', '(']
+4. ')' -> Pop  -> Matches '('! Stack: ['{', '[']
+5. ']' -> Pop  -> Matches '['! Stack: ['{']
+6. '}' -> Pop  -> Matches '{'! Stack: [] (Empty -> Balanced! ✅)
 ```
 
 ---
 
-## ⏱️ কমপ্লেক্সিটি (Complexity)
-- **টাইম কমপ্লেক্সিটি (Time Complexity):** $O(N)$
-- **স্পেস কমপ্লেক্সিটি (Space Complexity):** $O(N)$
+## ⏱️ Complexity Analysis (কমপ্লেক্সিটি)
+- **Time Complexity:** $O(N)$ — Single pass through string.
+- **Space Complexity:** $O(N)$ — Stack stores up to $N$ characters.
 
 ---
 
-## 🚀 কোড চালনার নিয়ম (How to Run)
+## 🚀 How to Run (কোড চালনার নিয়ম)
 ```bash
 go run ./dsa/hackerrank/02_balanced_brackets/main.go
 ```

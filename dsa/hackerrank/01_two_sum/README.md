@@ -1,37 +1,40 @@
 # 01. Two Sum Problem (টু সাম সমস্যা)
 
-## 📝 সমস্যা বর্ণনা (Problem Statement)
-একটি পূর্ণসংখ্যার অ্যারে `nums` এবং একটি `target` দেওয়া আছে। অ্যারের দুটি সংখ্যার ইনডেক্স খুঁজে বের করতে হবে যাদের যোগফল `target`-এর সমান।
+## 📝 Problem Statement (সমস্যা বর্ণনা)
+Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.  
+(একটি পূর্ণসংখ্যার অ্যারে `nums` এবং একটি `target` দেওয়া আছে। অ্যারের এমন দুটি সংখ্যার ইনডেক্স খুঁজে বের করতে হবে যাদের যোগফল `target`-এর সমান।)
 
 ---
 
-## 🧠 সমাধান যুক্তি (How it Works - Intuition)
-সাধারণ নেস্টেড লুপ ব্যবহার করলে টাইম কমপ্লেক্সিটি হয় $O(N^2)$।
-তবে **হ্যাশ ম্যাপ (Hash Map)** ব্যবহার করে আমরা **$O(N)$ সময়** এ সমাধান করতে পারি:
+## 🧠 Algorithm & Intuition (সমাধান যুক্তি)
+Brute-force approach using nested loops takes **$O(N^2)$ Time**.  
+Using a **Hash Map** (`map[number]index`), we can solve this in **$O(N)$ Time**:
 
-1. প্রতিটি উপাদান `num`-এর জন্য `diff = target - num` নির্ণয় করি।
-2. যদি `diff` মানটি আগে হ্যাশ ম্যাপে সেভ করা থাকে, তবে আমরা আমাদের কাঙ্ক্ষিত দুটি ইনডেক্স পেয়ে গেছি!
-3. না থাকলে, বর্তমান মান ও তার ইনডেক্স ম্যাপে যুক্ত করি।
+1. Loop through each element `num` in the `nums` array.
+2. Calculate `diff = target - num`.
+3. Check if `diff` exists in the Hash Map.
+   - If `diff` exists: We found the solution pair `[seen[diff], currentIndex]`!
+   - If not: Store the current number and index in the Hash Map (`seen[num] = currentIndex`).
 
 ---
 
-## 🎨 ডায়াগ্রাম (Diagram Trace)
+## 🎨 Diagram & Step-by-Step Trace
 ```text
-nums = [2, 7, 11, 15], target = 9
+Input: nums = [2, 7, 11, 15], target = 9
 
-i = 0, num = 2 -> diff = 9 - 2 = 7 -> map-এ 7 নেই -> map[2] = 0 সেভ করা হলো
-i = 1, num = 7 -> diff = 9 - 7 = 2 -> map-এ 2 আছে! -> Index (0, 1) পাওয়া গেল! ✅
+Step 1: i = 0, num = 2 -> diff = 9 - 2 = 7 -> 7 not in map -> map[2] = 0
+Step 2: i = 1, num = 7 -> diff = 9 - 7 = 2 -> 2 IS in map! -> Return indices [0, 1] ✅
 ```
 
 ---
 
-## ⏱️ কমপ্লেক্সিটি (Complexity)
-- **টাইম কমপ্লেক্সিটি (Time Complexity):** $O(N)$
-- **স্পেস কমপ্লেক্সিটি (Space Complexity):** $O(N)$
+## ⏱️ Complexity Analysis (কমপ্লেক্সিটি)
+- **Time Complexity:** $O(N)$ — Single pass through array.
+- **Space Complexity:** $O(N)$ — Hash map stores up to $N$ elements.
 
 ---
 
-## 🚀 কোড চালনার নিয়ম (How to Run)
+## 🚀 How to Run (কোড চালনার নিয়ম)
 ```bash
 go run ./dsa/hackerrank/01_two_sum/main.go
 ```
