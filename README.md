@@ -5,7 +5,38 @@
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 ![Language](https://img.shields.io/badge/Bilingual-English%20%7C%20Bangla-blue?style=for-the-badge)
 
-Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! This repository takes you from **zero to production-ready developer** in Go programming with clear explanations, runnable code snippets, unit tests, real-world projects, Data Structures & Algorithms (DSA), HackerRank/LeetCode solutions, and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
+Welcome to the **Ultimate Go (Golang) Master Course Repository**! This repository takes you from **zero to production-ready developer** in Go programming with clear step-by-step hierarchy roadmap, runnable code snippets, unit tests, real-world projects, Data Structures & Algorithms (DSA), HackerRank/LeetCode solutions, and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
+
+---
+
+## 🗺️ Step-by-Step Learning Hierarchy Roadmap
+
+> **New to Go?** Follow this exact step-by-step hierarchy tree to master Go programming:
+
+```text
+ [Phase 1: Core Syntax]
+       │  (01_introduction ──► 02_variables_types ──► 03_control_flow)
+       ▼
+ [Phase 2: Memory & Functions]
+       │  (04_functions_errors ──► 05_data_structures ──► 06_pointers)
+       ▼
+ [Phase 3: OOP & Concurrency]
+       │  (07_methods_interfaces ──► 08_concurrency ──► 09_modules_stdlib)
+       ▼
+ [Phase 4: Unit Testing & Quality]
+       │  (10_unit_testing_test.go - Unit & Table Tests)
+       ▼
+ [Phase 5: DSA & HackerRank Challenges]
+       │  (Linked List ──► Trees/Graphs ──► HackerRank 6 Patterns)
+       ▼
+ [Phase 6: Real-World Web & CLI Applications]
+       │  (CLI Todo App ──► REST API Server with JWT & PostgreSQL)
+       ▼
+ [Phase 7: DevOps & Production Deployment]
+          (Multi-Stage Docker ──► Docker Compose ──► GitHub CI/CD Actions)
+```
+
+👉 **[Read the Full Step-by-Step Hierarchy Roadmap (ROADMAP.md)](ROADMAP.md)**
 
 ---
 
@@ -24,7 +55,7 @@ Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! Th
 | **09** | **Modules & Standard Library** | [English Section 9](golang_basic_course.md#9-modules--standard-library) | [বাংলা অধ্যায় ৯](golang_basic_course_bangla.md#9-মডিউল-এবং-স্ট্যান্ডার্ড-লাইব্রেরি) | [`lesson09/`](lesson09/09_modules_stdlib.go) |
 | **10** | **Unit Testing & Benchmarks** | [Testing Guide](golang_basic_course.md) | [টেস্টিং গাইড](golang_basic_course_bangla.md) | [`lesson10/`](lesson10/10_unit_testing_test.go) |
 | 🧠 | **Data Structures & Algorithms (DSA)** | [DSA Guide](dsa/README.md) | [বাংলা DSA গাইড](dsa/README.md) | [`dsa/`](dsa/) |
-| 🏆 | **HackerRank & LeetCode Solutions** | [Solutions Guide](dsa/README.md) | [বাংলা সমস্যা গাইড](dsa/README.md) | [`dsa/hackerrank/`](dsa/hackerrank/) |
+| 🏆 | **HackerRank & LeetCode Solutions** | [Solutions Guide](dsa/hackerrank/README.md) | [বাংলা সমস্যা গাইড](dsa/hackerrank/README.md) | [`dsa/hackerrank/`](dsa/hackerrank/) |
 | 🌐 | **Project 1: RESTful API (JWT + GORM + Postgres)** | - | [REST API গাইড](golang_basic_course_bangla.md) | [`projects/01_rest_api/`](projects/01_rest_api/main.go) |
 | 📝 | **Project 2: CLI Todo Manager App** | - | [CLI App গাইড](golang_basic_course_bangla.md) | [`projects/02_cli_todo/`](projects/02_cli_todo/main.go) |
 
@@ -36,13 +67,9 @@ Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! Th
 # 1. Run All Unit Tests
 go test -v ./...
 
-# 2. Run HackerRank / LeetCode Challenge Solutions (with Bangla explanations)
+# 2. Run HackerRank Challenge Solutions (with Bangla explanations)
 go run ./dsa/hackerrank/01_two_sum/main.go
-go run ./dsa/hackerrank/02_balanced_brackets/main.go
-go run ./dsa/hackerrank/03_reverse_linked_list/main.go
-go run ./dsa/hackerrank/04_cycle_detection/main.go
 go run ./dsa/hackerrank/05_number_of_islands/main.go
-go run ./dsa/hackerrank/06_coin_change/main.go
 
 # 3. Run REST API Server with JWT Auth & PostgreSQL
 go run ./projects/01_rest_api/main.go
@@ -62,6 +89,7 @@ go run ./projects/02_cli_todo/main.go -list
 ```text
 .
 ├── 📄 README.md                        # Master GitHub Homepage
+├── 📄 ROADMAP.md                       # Complete Step-by-Step Learning Hierarchy
 ├── 📄 golang_basic_course.md           # English Course Manual
 ├── 📄 golang_basic_course_bangla.md    # বাংলা কোর্স গাইড
 ├── 📄 Dockerfile                       # Multi-stage Dockerfile
@@ -70,18 +98,8 @@ go run ./projects/02_cli_todo/main.go -list
 ├── 📁 .github/workflows/               # GitHub Actions CI Workflow
 │   └── 📄 go.yml
 ├── 📁 dsa/                             # Data Structures & Algorithms
-│   ├── 📄 01_linked_list.go
-│   ├── 📄 02_stack_queue.go
-│   ├── 📄 03_binary_tree.go
-│   ├── 📄 04_searching_sorting.go
-│   ├── 📄 05_advanced_dsa.go
-│   ├── 📁 hackerrank/                  # Standalone HackerRank Solutions (Bangla Docs)
-│   │   ├── 📁 01_two_sum/
-│   │   ├── 📁 02_balanced_brackets/
-│   │   ├── 📁 03_reverse_linked_list/
-│   │   ├── 📁 04_cycle_detection/
-│   │   ├── 📁 05_number_of_islands/
-│   │   └── 📁 06_coin_change/
+│   ├── 📁 01_linked_list/ to 05_advanced_dsa/
+│   ├── 📁 hackerrank/                  # Standalone HackerRank Solutions
 │   └── 📄 dsa_test.go
 ├── 📁 lesson01/ to lesson10/           # Core Lessons & Unit Testing
 └── 📁 projects/                        # Web API & CLI Applications
