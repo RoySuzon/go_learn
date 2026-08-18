@@ -5,7 +5,7 @@
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 ![Language](https://img.shields.io/badge/Bilingual-English%20%7C%20Bangla-blue?style=for-the-badge)
 
-Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! This repository takes you from **zero to production-ready developer** in Go programming with clear explanations, runnable code snippets, unit tests, real-world projects, Data Structures & Algorithms (DSA), and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
+Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! This repository takes you from **zero to production-ready developer** in Go programming with clear explanations, runnable code snippets, unit tests, real-world projects, Data Structures & Algorithms (DSA), HackerRank/LeetCode solutions, and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
 
 ---
 
@@ -24,33 +24,35 @@ Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! Th
 | **09** | **Modules & Standard Library** | [English Section 9](golang_basic_course.md#9-modules--standard-library) | [বাংলা অধ্যায় ৯](golang_basic_course_bangla.md#9-মডিউল-এবং-স্ট্যান্ডার্ড-লাইব্রেরি) | [`lesson09/`](lesson09/09_modules_stdlib.go) |
 | **10** | **Unit Testing & Benchmarks** | [Testing Guide](golang_basic_course.md) | [টেস্টিং গাইড](golang_basic_course_bangla.md) | [`lesson10/`](lesson10/10_unit_testing_test.go) |
 | 🧠 | **Data Structures & Algorithms (DSA)** | [DSA Guide](dsa/README.md) | [বাংলা DSA গাইড](dsa/README.md) | [`dsa/`](dsa/) |
+| 🏆 | **HackerRank & LeetCode Solutions** | [Solutions Guide](dsa/README.md) | [বাংলা সমস্যা গাইড](dsa/README.md) | [`dsa/hackerrank/`](dsa/hackerrank/) |
 | 🌐 | **Project 1: RESTful API (JWT + GORM + Postgres)** | - | [REST API গাইড](golang_basic_course_bangla.md) | [`projects/01_rest_api/`](projects/01_rest_api/main.go) |
 | 📝 | **Project 2: CLI Todo Manager App** | - | [CLI App গাইড](golang_basic_course_bangla.md) | [`projects/02_cli_todo/`](projects/02_cli_todo/main.go) |
-| 🌟 | **Master All-in-One Example** | [Full Guide](golang_basic_course.md) | [বাংলা গাইড](golang_basic_course_bangla.md) | [`bangla_example/`](bangla_example/bangla_master_example.go) |
 
 ---
 
 ## ⚡ Quick Start & Running Commands
 
 ```bash
-# 1. Run All Unit Tests & Benchmarks (Includes DSA & REST API)
+# 1. Run All Unit Tests
 go test -v ./...
-go test -v ./dsa/...
 
-# 2. Run REST API Server with JWT Auth & PostgreSQL
+# 2. Run HackerRank / LeetCode Challenge Solutions (with Bangla explanations)
+go run ./dsa/hackerrank/01_two_sum/main.go
+go run ./dsa/hackerrank/02_balanced_brackets/main.go
+go run ./dsa/hackerrank/03_reverse_linked_list/main.go
+go run ./dsa/hackerrank/04_cycle_detection/main.go
+go run ./dsa/hackerrank/05_number_of_islands/main.go
+go run ./dsa/hackerrank/06_coin_change/main.go
+
+# 3. Run REST API Server with JWT Auth & PostgreSQL
 go run ./projects/01_rest_api/main.go
-# Open browser / Postman: http://localhost:8080/api/books
 
-# 3. Docker Deployment (Containerized API & PostgreSQL Service)
+# 4. Docker Deployment (Containerized API & PostgreSQL Service)
 docker compose up -d
 
-# 4. Run CLI Todo App
+# 5. Run CLI Todo App
 go run ./projects/02_cli_todo/main.go -add "Go প্রোগ্রামিং শেখা"
 go run ./projects/02_cli_todo/main.go -list
-go run ./projects/02_cli_todo/main.go -complete 1
-
-# 5. Run Bangla Master Example
-go run ./bangla_example/bangla_master_example.go
 ```
 
 ---
@@ -72,13 +74,17 @@ go run ./bangla_example/bangla_master_example.go
 │   ├── 📄 02_stack_queue.go
 │   ├── 📄 03_binary_tree.go
 │   ├── 📄 04_searching_sorting.go
-│   ├── 📄 dsa_test.go
-│   └── 📄 README.md
+│   ├── 📄 05_advanced_dsa.go
+│   ├── 📁 hackerrank/                  # Standalone HackerRank Solutions (Bangla Docs)
+│   │   ├── 📁 01_two_sum/
+│   │   ├── 📁 02_balanced_brackets/
+│   │   ├── 📁 03_reverse_linked_list/
+│   │   ├── 📁 04_cycle_detection/
+│   │   ├── 📁 05_number_of_islands/
+│   │   └── 📁 06_coin_change/
+│   └── 📄 dsa_test.go
 ├── 📁 lesson01/ to lesson10/           # Core Lessons & Unit Testing
-├── 📁 projects/
-│   ├── 📁 01_rest_api/                 # RESTful HTTP API (JWT + PostgreSQL)
-│   └── 📁 02_cli_todo/                 # CLI Task Manager with Persistence
-└── 📁 bangla_example/                  # Bangla Master Example
+└── 📁 projects/                        # Web API & CLI Applications
 ```
 
 ---
