@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Go (Golang) Master Course & Systems Engineering Docs</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Kalpurush&family=Noto+Sans+Bengali:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', 'Noto Sans Bengali', 'Kalpurush', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+
+        code, pre {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .glass-card {
+            background: rgba(22, 27, 34, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(48, 54, 61, 0.7);
+        }
+
+        .sidebar-link.active {
+            background-color: #1f6feb22;
+            color: #58a6ff;
+            border-left: 3px solid #58a6ff;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d1117;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #484f58;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="w-80 bg-[#161b22] border-r border-[#30363d] flex flex-col h-full z-20">
+        <!-- Logo Header -->
+        <div class="p-5 border-b border-[#30363d] flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <i class="fa-brands fa-golang text-4xl text-[#00ADD8]"></i>
+                <div>
+                    <h1 class="font-bold text-lg text-white leading-tight">Go Master Docs</h1>
+                    <span class="text-xs text-gray-400">Zero to Senior Engineer 🇧🇩 🇬🇧</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="p-4 border-b border-[#30363d]">
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400 text-sm"></i>
+                <input type="text" id="searchInput" onkeyup="filterDocs()" placeholder="খুঁজুন / Search topics..." 
+                       class="w-full bg-[#0d1117] border border-[#30363d] rounded-lg pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:border-[#58a6ff]">
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="flex-1 overflow-y-auto p-3 space-y-6 text-sm" id="navList">
+            <!-- Roadmap -->
+            <div>
+                <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🗺️ Hierarchy Roadmap</span>
+                <div class="mt-2 space-y-1">
+                    <a href="#roadmap" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">1. Complete Learning Path</a>
+                </div>
+            </div>
+
+            <!-- Basic Lessons -->
+            <div>
+                <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🟢 Core Lessons (1 - 10)</span>
+                <div class="mt-2 space-y-1">
+                    <a href="#lesson01" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">01. Hello World & Structure</a>
+                    <a href="#lesson02" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">02. Variables & Data Types</a>
+                    <a href="#lesson03" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">03. Control Flow (if/switch/for)</a>
+                    <a href="#lesson04" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">04. Functions & Error Handling</a>
+                    <a href="#lesson05" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">05. Data Structures (Slices/Maps)</a>
+                    <a href="#lesson06" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">06. Pointers & Memory</a>
+                    <a href="#lesson07" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">07. Methods & Interfaces</a>
+                    <a href="#lesson08" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">08. Concurrency & Channels</a>
+                    <a href="#lesson09" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">09. Modules & Stdlib</a>
+                    <a href="#lesson10" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">10. Unit Testing & Benchmarks</a>
+                </div>
+            </div>
+
+            <!-- DSA & HackerRank -->
+            <div>
+                <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🧠 DSA & HackerRank</span>
+                <div class="mt-2 space-y-1">
+                    <a href="#dsa-core" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Core Data Structures</a>
+                    <a href="#dsa-advanced" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Advanced DSA (Trie, Heap, Graph)</a>
+                    <a href="#hackerrank" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">HackerRank 6 Top Patterns</a>
+                </div>
+            </div>
+
+            <!-- Backend Projects -->
+            <div>
+                <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">🏗️ Systems Engineering Projects</span>
+                <div class="mt-2 space-y-1">
+                    <a href="#proj-rest" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 01: REST API (JWT + Postgres)</a>
+                    <a href="#proj-cli" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 02: CLI Todo Manager</a>
+                    <a href="#proj-grpc" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 03: gRPC Microservice</a>
+                    <a href="#proj-redis" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 04: Redis Caching (Cache-Aside)</a>
+                    <a href="#proj-queue" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 05: Event Queue & Worker Pool</a>
+                    <a href="#proj-db" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 06: Advanced SQL & Connection Pool</a>
+                    <a href="#proj-sysdesign" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 07: System Design (Rate Limiter & CB)</a>
+                    <a href="#proj-obs" class="sidebar-link block px-3 py-2 rounded-md hover:bg-[#21262d] transition">Proj 08: Observability (slog & Prometheus)</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Footer -->
+        <div class="p-4 border-t border-[#30363d] text-xs text-gray-400 flex justify-between items-center">
+            <span>License: MIT</span>
+            <a href="https://github.com/RoySuzon/go_learn" target="_blank" class="text-[#58a6ff] hover:underline flex items-center gap-1">
+                <i class="fa-brands fa-github"></i> GitHub Repo
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 overflow-y-auto p-8 space-y-12" id="mainContent">
+
+        <!-- HEADER BANNER -->
+        <div class="glass-card p-8 rounded-2xl border border-[#30363d] bg-gradient-to-r from-[#161b22] to-[#0d1117]">
+            <div class="flex items-center space-x-3 mb-3">
+                <span class="bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/30 text-xs px-3 py-1 rounded-full font-semibold">Complete Master Guide</span>
+                <span class="bg-green-500/10 text-green-400 border border-green-500/30 text-xs px-3 py-1 rounded-full font-semibold">Go 1.26+ Ready</span>
+            </div>
+            <h1 class="text-3xl font-extrabold text-white mb-2">Ultimate Go (Golang) Programming & Systems Engineering Docs</h1>
+            <p class="text-gray-300 text-sm max-w-3xl leading-relaxed">
+                জিরো থেকে শুরু করে সিনিয়র গো সফটওয়্যার ইঞ্জিনিয়ার হওয়ার জন্য সম্পূর্ণ গাইডে স্বাগতম! এখানে Go কোর সিনট্যাক্স, কনকারেন্সি, ইউনিট টেস্টিং, DSA, HackerRank সলিউশন, মাইক্রোসার্ভিস, এবং ডিস্ট্রিবিউটেড সিস্টেম আর্কিটেকচার বাংলায় সচিত্র ব্যাখ্যা করা হয়েছে।
+            </p>
+        </div>
+
+        <!-- SECTION: ROADMAP HIERARCHY -->
+        <section id="roadmap" class="space-y-4">
+            <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                <span>🗺️</span> 23-Step Hierarchy Roadmap (ধাপে ধাপে শেখার মানচিত্র)
+            </h2>
+            <div class="glass-card p-6 rounded-xl overflow-x-auto">
+                <pre class="text-xs text-green-400 leading-relaxed font-mono">
+ [Level 01: Core Syntax]
+       │ (01_introduction ──► 02_variables_types ──► 03_control_flow)
+       ▼
+ [Level 02: Memory & Functions]
+       │ (04_functions_errors ──► 05_data_structures ──► 06_pointers)
+       ▼
+ [Level 03: OOP & Concurrency]
+       │ (07_methods_interfaces ──► 08_concurrency ──► 09_modules_stdlib)
+       ▼
+ [Level 04: Quality & Unit Testing]
+       │ (10_unit_testing_test.go - Unit & Table Tests)
+       ▼
+ [Level 05: Data Structures & Algorithms]
+       │ (01_linked_list ──► 02_stack_queue ──► 03_binary_tree ──► 04_searching_sorting ──► 05_advanced_dsa ──► hackerrank)
+       ▼
+ [Level 06: Real-World Backend & Systems Engineering Projects]
+       │ (01_rest_api ──► 02_cli_todo ──► 03_grpc_service ──► 04_redis_cache ──► 05_event_queue ──► 06_database_advanced ──► 07_system_design ──► 08_observability)
+       ▼
+ [Level 07: DevOps & Production Architecture]
+          (Dockerfile ──► docker-compose.yml ──► .github/workflows/go.yml ──► system_architecture_bangla.md)
+                </pre>
+            </div>
+        </section>
+
+        <!-- SECTION: CORE LESSONS -->
+        <section id="lesson01" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Lesson 01: Hello World & Structure (সূচনা ও প্রোগ্রামের গঠন)</h2>
+                <span class="text-xs text-gray-400">lesson01/01_introduction.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-3">
+                <p class="text-sm text-gray-300">
+                    <strong>ব্যাখ্যা:</strong> প্রতিটি রানঅ্যাবল Go প্রোগ্রাম <code>package main</code> দিয়ে শুরু হতে হয়। <code>import "fmt"</code> দিয়ে ইনপুট-আউটপুট প্যাকেজ সংযুক্ত করা হয় এবং <code>func main()</code> হলো প্রোগ্রামের মূল এন্ট্রি পয়েন্ট।
+                </p>
+                <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
+                    <pre class="text-xs text-[#58a6ff]"><code>package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World! গো প্রোগ্রামিং-এ স্বাগতম।")
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: CONCURRENCY -->
+        <section id="lesson08" class="space-y-4 border-t border-[#30363d] pt-8">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white">Lesson 08: Concurrency, Goroutines & Channels (কনকারেন্সি)</h2>
+                <span class="text-xs text-gray-400">lesson08/08_concurrency.go</span>
+            </div>
+            <div class="glass-card p-5 rounded-xl space-y-3">
+                <p class="text-sm text-gray-300">
+                    <strong>ব্যাখ্যা:</strong> <code>go</code> কিওয়ার্ড দিয়ে খুব লাইটওয়েট থ্রেড (Goroutine - ~2KB) চালু করা যায়। চ্যানেলের মাধ্যমে থ্রেডগুলোর মধ্যে তথ্য আদান-প্রদান করা হয়। <code>sync.Mutex</code> রেস কন্ডিশন প্রতিরোধ করে।
+                </p>
+                <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
+                    <pre class="text-xs text-[#58a6ff]"><code>ch := make(chan string)
+
+go func() {
+    ch <- "গোরুটিন থেকে সফলভাবে বার্তা প্রাপ্ত!"
+}()
+
+msg := <-ch
+fmt.Println(msg)</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: DSA CORE -->
+        <section id="dsa-core" class="space-y-4 border-t border-[#30363d] pt-8">
+            <h2 class="text-2xl font-bold text-white">🧠 Data Structures & Algorithms (DSA)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-5 rounded-xl">
+                    <h3 class="font-bold text-white mb-2">1. Singly Linked List</h3>
+                    <p class="text-xs text-gray-400 mb-3">Head pointer, Insert, Delete node, Search (O(N) search, O(1) head insertion).</p>
+                    <pre class="text-xs text-green-400 bg-[#0d1117] p-3 rounded-lg">[Head] -> [10|Next] -> [20|Next] -> NIL</pre>
+                </div>
+                <div class="glass-card p-5 rounded-xl">
+                    <h3 class="font-bold text-white mb-2">2. Binary Search Tree (BST)</h3>
+                    <p class="text-xs text-gray-400 mb-3">Left child < Parent < Right child. In-Order traversal returns sorted elements.</p>
+                    <pre class="text-xs text-green-400 bg-[#0d1117] p-3 rounded-lg">   (50)
+  /    \
+(30)  (70)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: HACKERRANK -->
+        <section id="hackerrank" class="space-y-4 border-t border-[#30363d] pt-8">
+            <h2 class="text-2xl font-bold text-white">🏆 HackerRank & LeetCode 6 Top Problem Patterns</h2>
+            <div class="glass-card p-5 rounded-xl space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                    <div class="p-3 bg-[#0d1117] rounded-lg border border-[#30363d]">
+                        <span class="font-bold text-[#58a6ff]">01. Two Sum</span>
+                        <p class="text-gray-400 mt-1">Hash Map pattern for index lookup in O(N) Time.</p>
+                    </div>
+                    <div class="p-3 bg-[#0d1117] rounded-lg border border-[#30363d]">
+                        <span class="font-bold text-[#58a6ff]">02. Balanced Brackets</span>
+                        <p class="text-gray-400 mt-1">LIFO Stack pattern for matching bracket pairs.</p>
+                    </div>
+                    <div class="p-3 bg-[#0d1117] rounded-lg border border-[#30363d]">
+                        <span class="font-bold text-[#58a6ff]">05. Number of Islands</span>
+                        <p class="text-gray-400 mt-1">2D Grid Graph DFS flood-fill traversal pattern.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: BACKEND PROJECTS -->
+        <section id="proj-rest" class="space-y-4 border-t border-[#30363d] pt-8">
+            <h2 class="text-2xl font-bold text-white">🏗️ Systems Engineering Projects Matrix</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-5 rounded-xl border-l-4 border-blue-500">
+                    <h3 class="font-bold text-white">Project 01: REST API (JWT + PostgreSQL)</h3>
+                    <p class="text-xs text-gray-300 mt-2">JWT Bearer Token authentication, password hashing (`crypto/sha256`), GORM ORM auto-migrations.</p>
+                    <code class="block text-xs bg-[#0d1117] text-gray-300 p-2 mt-3 rounded">go run ./projects/01_rest_api/main.go</code>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl border-l-4 border-purple-500">
+                    <h3 class="font-bold text-white">Project 03: gRPC Microservice</h3>
+                    <p class="text-xs text-gray-300 mt-2">Binary Protocol Buffers (`proto3`) over HTTP/2 TCP sockets for 10x faster inter-service RPC communication.</p>
+                    <code class="block text-xs bg-[#0d1117] text-gray-300 p-2 mt-3 rounded">go run ./projects/03_grpc_service/server/main.go</code>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl border-l-4 border-red-500">
+                    <h3 class="font-bold text-white">Project 04: Redis Caching (Cache-Aside)</h3>
+                    <p class="text-xs text-gray-300 mt-2">Cache-Aside pattern with TTL expiration for sub-millisecond data lookups.</p>
+                    <code class="block text-xs bg-[#0d1117] text-gray-300 p-2 mt-3 rounded">go run ./projects/04_redis_cache/main.go</code>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl border-l-4 border-yellow-500">
+                    <h3 class="font-bold text-white">Project 07: System Design Patterns</h3>
+                    <p class="text-xs text-gray-300 mt-2">Token Bucket Rate Limiter (O(1)) and Circuit Breaker state machine for fault tolerance.</p>
+                    <code class="block text-xs bg-[#0d1117] text-gray-300 p-2 mt-3 rounded">go run ./projects/07_system_design/main.go</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER SECTION -->
+        <footer class="text-center text-xs text-gray-500 border-t border-[#30363d] pt-6 pb-12">
+            <p>Ultimate Go (Golang) Programming Master Course Documentation — Built with ❤️ for Developers</p>
+        </footer>
+
+    </main>
+
+    <!-- INTERACTIVE JAVASCRIPT FOR SEARCH & NAVIGATION -->
+    <script>
+        function filterDocs() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const links = document.querySelectorAll('#navList a');
+            
+            links.forEach(link => {
+                const text = link.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    link.style.display = "block";
+                } else {
+                    link.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

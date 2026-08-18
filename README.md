@@ -5,7 +5,15 @@
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 ![Language](https://img.shields.io/badge/Bilingual-English%20%7C%20Bangla-blue?style=for-the-badge)
 
-Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! This repository takes you from **zero to production-ready Senior Software Engineer** in Go programming with clear step-by-step hierarchy roadmap, runnable code snippets, unit tests, real-world projects, gRPC microservices, Redis caching, Message queues, System design patterns, Observability, Data Structures & Algorithms (DSA), HackerRank/LeetCode solutions, System Architecture guides, and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
+Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! This repository takes you from **zero to production-ready Senior Backend Developer** in Go programming with clear step-by-step hierarchy roadmap, runnable code snippets, unit tests, real-world projects, gRPC microservices, Redis caching, Message queues, System design patterns, Observability, Data Structures & Algorithms (DSA), HackerRank/LeetCode solutions, System Architecture guides, and complete bilingual support (**English 🇬🇧 & Bangla 🇧🇩**).
+
+---
+
+## 🌐 Interactive HTML Documentation Website
+
+> **Browse the entire course interactively in your browser with search, dark mode, code snippets, and diagrams:**
+
+👉 **[Launch Interactive HTML Docs Website (docs/index.html)](docs/index.html)**
 
 ---
 
@@ -53,7 +61,7 @@ Welcome to the **Ultimate Go (Golang) Programming Master Course Repository**! Th
 | **09** | **Modules & Standard Library** | [English 9](golang_basic_course.md#9-modules--standard-library) | [বাংলা ৯](golang_basic_course_bangla.md#9-মডিউল-এবং-স্ট্যান্ডার্ড-লাইব্রেরি) | [`lesson09/`](lesson09/09_modules_stdlib.go) | `go run ./lesson09/09_modules_stdlib.go` |
 | **10** | **Unit Testing & Benchmarks** | [Testing Guide](golang_basic_course.md) | [টেস্টিং গাইড](golang_basic_course_bangla.md) | [`lesson10/`](lesson10/10_unit_testing_test.go) | `go test -v ./lesson10/...` |
 | 🧠 | **Data Structures & Algorithms (DSA)** | [DSA Guide](dsa/README.md) | [বাংলা DSA গাইড](dsa/README.md) | [`dsa/`](dsa/) | `go test -v ./dsa/...` |
-| 🏆 | **HackerRank & LeetCode Solutions** | [Solutions Guide](dsa/hackerrank/README.md) | [বাংলা প্রবলেমস গাইড](dsa/hackerrank/README.md) | [`dsa/hackerrank/`](dsa/hackerrank/) | `go run ./dsa/hackerrank/01_two_sum/main.go` |
+| 🏆 | **HackerRank & LeetCode Solutions** | [Solutions Guide](dsa/hackerrank/README.md) | [বাংলা সমস্যা গাইড](dsa/hackerrank/README.md) | [`dsa/hackerrank/`](dsa/hackerrank/) | `go run ./dsa/hackerrank/01_two_sum/main.go` |
 | 🌐 | **Project 01: REST API (JWT + Postgres)** | - | [REST API গাইড](golang_basic_course_bangla.md) | [`projects/01_rest_api/`](projects/01_rest_api/main.go) | `go run ./projects/01_rest_api/main.go` |
 | 📝 | **Project 02: CLI Todo Manager App** | - | [CLI App গাইড](golang_basic_course_bangla.md) | [`projects/02_cli_todo/`](projects/02_cli_todo/main.go) | `go run ./projects/02_cli_todo/main.go -list` |
 | ⚡ | **Project 03: High-Speed gRPC Microservice** | - | [gRPC গাইড](projects/03_grpc_service/README.md) | [`projects/03_grpc_service/`](projects/03_grpc_service/) | `go run ./projects/03_grpc_service/server/main.go` |
